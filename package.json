@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "scss": "sass --watch ./src/style/index.scss:./src/style/index.css"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.23.4",
     "@babel/core": "^7.23.6",
     "@babel/preset-env": "^7.23.6",
     "babel-loader": "^9.1.3",
