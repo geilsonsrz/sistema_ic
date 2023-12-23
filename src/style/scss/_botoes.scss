@@ -22,13 +22,18 @@
 
 .btn-tema
 {
-    .icone-tema { position: absolute }
+    .icone-tema
+    {
+        position: absolute;
+        color: inherit;
+    }
 
-    #sol { color: $sol }
-
-    #lua {color: $lua}
-
-
+    &:hover
+    {
+        #sol { color: $sol }
+    
+        #lua {color: $lua}
+    }
 }
 
 .claro

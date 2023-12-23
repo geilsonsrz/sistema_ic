@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server",
-    "scss": "sass --watch ./src/style/index.scss:./src/style/index.css"
+    "scss": "sass --watch ./src/style/index.scss : ./dist/index.css"
   },
   "keywords": [],
   "author": "",
