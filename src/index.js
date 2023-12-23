@@ -1,5 +1,6 @@
-import './style/index.css'  // Para incluir o CSS no código final.
+// Inclução do SCSS
+import './style/index.scss'
 
-const hola = () => console.log(`Holaaa! ${2+5}` )
+// Scripts de efeitos SCSS e funcionalidades
+import './scripts/efeitos_estilos/tema.js'
 
-hola()

@@ -1,14 +1,30 @@
-@import url('./scss/tema_claro.scss');
-@import url('./scss/tema_escuro.scss');
-@import url('./scss/tela.scss');
-@import url('./scss/resultado.scss');
-@import url('./scss/navbar.scss');
-@import url('./scss/formulario.scss');
-@import url('./scss/botoes.scss');
+@import './scss/botoes';
+@import './scss/formulario';
+@import './scss/navbar';
+@import './scss/resultado';
+@import './scss/tela';
+@import './scss/variaveis';
 
 *
 {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body
+{
+    transition: ease-in-out 0.2s;    
+}
+
+.claro
+{
+    color: $cor-primaria;
+    background-color: $fundo-primario;
+}
+
+.escuro
+{
+    color: $cor-secundaria;
+    background-color: $fundo-secundario;
 }

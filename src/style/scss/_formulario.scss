@@ -10,10 +10,12 @@
 
     border: 0.1em solid #000;
     border-radius: 1em;
-}
 
-.texto-subtitulo
-{
-    user-select: none;
-    text-transform: uppercase;
+
+    .texto-subtitulo
+    {
+        user-select: none;
+        text-transform: uppercase;
+    }
+
 }

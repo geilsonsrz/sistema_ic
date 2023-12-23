@@ -1,0 +1,46 @@
+@import './variaveis';
+
+.botao
+{
+    user-select: none;
+}
+
+.btn-processar
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    border: 0.1em solid $cor-primaria;
+    border-radius: 0.1em;
+    
+    &:active
+    {
+        transform: scale(0.99);
+    }
+}
+
+.btn-tema
+{
+    .icone-tema { position: absolute }
+
+    #sol { color: $sol }
+
+    #lua {color: $lua}
+
+
+}
+
+.claro
+{
+    #sol { opacity: 0 }
+
+    #lua { opacity: 1 }
+}
+
+.escuro
+{
+    #sol { opacity: 1 }
+
+    #lua { opacity: 0 }
+}
