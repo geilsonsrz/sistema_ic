@@ -1,0 +1,19 @@
+
+.formulario
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 30%;
+    height: 15em;
+
+    border: 0.1em solid #000;
+    border-radius: 1em;
+}
+
+.texto-subtitulo
+{
+    user-select: none;
+    text-transform: uppercase;
+}
