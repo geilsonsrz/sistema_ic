@@ -1,5 +1,6 @@
-// Função de leitura do formulário
+// Função de leitura do arquivo e arquivamento temporário no navegador
 
+// Identificação do input do arquivo e observação do evento
 document.getElementById('input-arquivo').addEventListener('change', (evento) => {
 
     // Captura do arquivo
@@ -20,7 +21,12 @@ document.getElementById('input-arquivo').addEventListener('change', (evento) => 
             // Conteúdo do evento
             const conteudo = e.target.result
 
-            console.log(conteudo)
+            // Salvando dados no sessionStorage (memória temporária do navegador)
+            // Limpando qualquer arquivo que esteja antes
+            sessionStorage.clear()
+
+            // Incluindo arquivo atual
+            sessionStorage.setItem('conteudo', conteudo)
 
         }
 
@@ -28,13 +34,11 @@ document.getElementById('input-arquivo').addEventListener('change', (evento) => 
         leitor.readAsText(arquivo)
 
     } else {
+
+        // Aviso de ERRO
         alert(`ERRO: ${arquivo.name} não é válido.\n
         Insira um arquivo válido.`)
+
     }
 })
-
-
-
-
-
 

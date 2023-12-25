@@ -5,8 +5,11 @@ import './style/index.scss'
 import './scripts/efeitos_estilos/tema.js'
 
 // SCRIPT DE PROCESSAMENTO DOS DADOS
-// Script inicial de leitura do formulário
-import './scripts/processamento/formulario.js'
+// Script inicial de leitura do arquivo
+import './scripts/processamento/leituraArquivo.js'
+
+
+
 
 
 
