@@ -8,8 +8,8 @@ import './scripts/efeitos_estilos/tema.js'
 // Script inicial de leitura do arquivo
 import './scripts/processamento/leituraArquivo.js'
 
-
-
+// Script do botão para o início do processamento
+import './scripts/processamento/botaoProcessar.js'
 
 
 

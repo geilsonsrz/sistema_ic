@@ -36,8 +36,10 @@ document.getElementById('input-arquivo').addEventListener('change', (evento) => 
     } else {
 
         // Aviso de ERRO
-        alert(`ERRO: ${arquivo.name} não é válido.\n
-        Insira um arquivo válido.`)
+        alert(
+        `ERRO: ${arquivo.name} não é válido.\n
+        Insira um arquivo válido.`
+        )
 
     }
 })
