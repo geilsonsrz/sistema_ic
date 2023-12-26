@@ -11,20 +11,23 @@ document.getElementById('input-arquivo').addEventListener('change', (evento) => 
 
     // Verificação do tipo do arquivo
     if (verificacao_txt) {
-
+        
         // Criando leitor do arquivo
         const leitor = new FileReader()
-
+        
         // Função de leitura
         leitor.onload = (e) => {
-
+            
             // Conteúdo do evento
             const conteudo = e.target.result
-
+            
             // Salvando dados no sessionStorage (memória temporária do navegador)
             // Limpando qualquer arquivo que esteja antes
             sessionStorage.clear()
 
+            // Incluindo o tipo de documento
+            sessionStorage.setItem('tipo_documento', verificacao_txt)
+            
             // Incluindo arquivo atual
             sessionStorage.setItem('conteudo', conteudo)
 
