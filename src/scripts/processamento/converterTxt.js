@@ -1,7 +1,8 @@
 
-const converter_txt = (conteudo_session_storage) => {
 
-    const lista_linhas_txt = conteudo_session_storage.split('\n')
+const converter_txt = async (conteudo_session_storage) => {
+
+    const lista_linhas_txt = await conteudo_session_storage.split('\n')
 
     // O caractere '\t' em uma string representa um caractere de tabulação horizontal
     let linha = lista_linhas_txt[50].split('\t')

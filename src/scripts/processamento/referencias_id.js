@@ -1,6 +1,7 @@
 // Referencias em objeto
 
 const referencias_id = {
+    
     // Caixa 01
     'caixa_1_contador': 12,
     'caixa_1_sensor_1': 7,
