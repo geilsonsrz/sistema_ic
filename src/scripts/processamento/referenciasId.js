@@ -1,8 +1,11 @@
 // Referencias em objeto
 
+
 const referencias_id = {
     
     // Caixa 01
+    // Lista de id's pertencentes a caixa 1
+    'caixa01': [7, 8, 9, 10, 11, 12],
     'caixa_1_contador': 12,
     'caixa_1_sensor_1': 7,
     'caixa_1_sensor_2': 8,
@@ -11,6 +14,8 @@ const referencias_id = {
     'caixa_1_sensor_5': 11,
 
     // Caixa 02
+    // Lista de id's pertencentes a caixa 2
+    'caixa02': [13, 14, 15, 16, 17, 18, 19, 26],
     'caixa_2_contador': 26,
     'caixa_2_sensor_1': 13,
     'caixa_2_sensor_2': 14,
@@ -22,6 +27,8 @@ const referencias_id = {
     'superficie': 18,
 
     // Caixa 03
+    // Lista de id's pertencentes a caixa 3
+    'caixa03': [20, 21, 22, 23, 24, 25],
     'caixa_3_contador': 25,
     'caixa_3_sensor_1': 20,
     'caixa_3_sensor_2': 21,
@@ -30,3 +37,6 @@ const referencias_id = {
     'caixa_3_sensor_5': 24
 
 }
+
+
+export default referencias_id

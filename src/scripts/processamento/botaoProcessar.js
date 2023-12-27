@@ -6,7 +6,7 @@ import converter_xml from "./converterXml"
 
 
 // Ouvir o evento de clique no botão processar
-document.getElementById('btn-processar').addEventListener('click', () => {
+document.getElementById('btn-processar').addEventListener('click', async () => {
 
     // Identificando o conteúdo do documento da Session Storage
     const conteudo = sessionStorage.getItem('conteudo')
@@ -20,12 +20,15 @@ document.getElementById('btn-processar').addEventListener('click', () => {
         // Controle do tipo do documento .txt
         if (tipo_documento == '.txt') {
             
-            const dados_arquivo = converter_txt(conteudo)
+            const dados_arquivo = await converter_txt(conteudo)
+
+            console.log(dados_arquivo)
 
         // Controle do tipo do documento .xml
         } else if (tipo_documento == '.xml') {
 
             const dados_arquivo = converter_xml(conteudo)
+
 
         // Seguda prevenção de outro tipo de documento
         } else {
@@ -33,8 +36,6 @@ document.getElementById('btn-processar').addEventListener('click', () => {
             console.log('Verificar o tipo do arquivo.')
 
         }
-
-        
 
     } else {
 
