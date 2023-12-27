@@ -20,14 +20,12 @@ document.getElementById('btn-processar').addEventListener('click', async () => {
         // Controle do tipo do documento .txt
         if (tipo_documento == '.txt') {
             
-            const dados_arquivo = await converter_txt(conteudo)
-
-            console.log(dados_arquivo)
+            await converter_txt(conteudo)
 
         // Controle do tipo do documento .xml
         } else if (tipo_documento == '.xml') {
-
-            const dados_arquivo = converter_xml(conteudo)
+            
+            await converter_xml(conteudo)
 
 
         // Seguda prevenção de outro tipo de documento
