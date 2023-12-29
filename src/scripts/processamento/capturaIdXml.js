@@ -2,7 +2,7 @@
 
 
 
-const converter_xml = (conteudo_session_storage) => {
+const capturaIdXml = (conteudo_session_storage) => {
 
     const parser = new DOMParser()
 
@@ -10,10 +10,9 @@ const converter_xml = (conteudo_session_storage) => {
 
     const ids = documento_xml.getElementsByTagName('tagid')
 
-    console.log(ids)
 
 }
 
 
 
-export default converter_xml
+export default capturaIdXml

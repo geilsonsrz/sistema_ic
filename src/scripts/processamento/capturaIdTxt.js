@@ -1,13 +1,18 @@
 `
-        ESTRUTURAÇÃO DOS DADOS DO ARQUIVO
+        CAPTURA DOS DADOS ID
 
-    - Devolve um objeto chave:valor com os dados das caixas. 
+    - Devolve um objeto chave:valor com uma lista dos valores e momentos.
+    
+    dados_ids = {
+
+        id: [ [valor, momento], ... ]
+
+    }
 `
-import referencias_id from './referenciasId.js'
 
 
-
-const converter_txt = async (conteudo_session_storage) => {
+// Definição da função de estruturação do arquivo TXT
+const capturaIdTxt = async (conteudo_session_storage) => {
 
     // Recuperação do conteúdo do arquivo
     const lista_linhas_txt = await conteudo_session_storage.split('\n')
@@ -24,29 +29,28 @@ const converter_txt = async (conteudo_session_storage) => {
         let valor = parseFloat(dados_linha[1])  // Captura do dado
         let momento = dados_linha[2]    // Captura do momento
 
-        // Verificação de id
+        // Verificação de id para validar linha
         if (isFinite(id)) {
 
+            // Verificando se o id já foi capturado
             if (id in dados_ids) {
 
                 dados_ids[id].push([valor, momento])   // Incremento nos dados do id
 
+            // Caso seja o primeiro incremento do id
             } else {
 
                 dados_ids[id] = [[valor, momento]]     // Incremento nos dados do id
-
+                
             }
-
-
         }
-
-    
     })
 
-    console.log(dados_ids)
+    // Retorno
+    return dados_ids
 
 }
 
 
 
-export default converter_txt
+export default capturaIdTxt
