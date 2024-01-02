@@ -1,0 +1,27 @@
+Referencias
+
+tagid 25: Contador caja3
+tagid24: Sensor5 caja3 ( 40 cm superficie)
+tagid23: Sensor4 caja3 (80cm superficie)
+tagid22: Sensor 3 caja 3 ( 120 cm superficie)
+tagid21: Sensor2 caja3 (160cm)
+tagid20: Sensor1 caja3 (2m)
+
+tagid19: humedad
+tagid18: Sensor superficie
+
+tagid26: Contador caja2
+tagid17: Sensor5 caja2
+tagid16: Sensor4 caja2 ( 40 cm superficie)
+tagid15: Sensor3 caja2 (80cm)
+tagid14: Sensor2 caja2 (160cm)
+tagid13: Sensor1 caja2 (200cm)
+
+tagid12: Contador caja1
+tagid11: Sensor5 caja1
+tagid10: Sensor4 caja1
+tagid9: Sensor3 caja1
+tagid8: Sensor2 caja1
+tagid7: Sensor1 caja1
+
+tagid6: Desconsiderar

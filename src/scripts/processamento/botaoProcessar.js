@@ -26,17 +26,10 @@ document.getElementById('btn-processar').addEventListener('click', async () => {
             
             dados_id = await capturaIdTxt(conteudo)
 
-            // // Guardando os dados dos id's
-            // sessionStorage.setItem('dados_id', dados_id)
-
-
         // Controle do tipo do documento .xml
         } else if (tipo_documento == '.xml') {
             
             dados_id = await capturaIdXml(conteudo)
-
-            // // Guardando os dados dos id's
-            // sessionStorage.setItem('dados_id', dados_id)
 
         // Seguda prevenção de outro tipo de documento
         } else {
@@ -46,6 +39,8 @@ document.getElementById('btn-processar').addEventListener('click', async () => {
         }
 
 
+        // Estruturando os dados nas caixas
+        // Umidade e superfície são independentes
         if ( dados_id != "") {
 
             await estruturacao(dados_id)
