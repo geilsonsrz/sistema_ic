@@ -5,6 +5,8 @@ import capturaIdTxt from "./capturaIdTxt"
 import capturaIdXml from "./capturaIdXml"
 // Estruturacao dos dados
 import estruturacao from "./estruturacao.js"
+// Gráficos
+import graficos from "./graficandoCaixas.js"
 
 
 // Ouvir o evento de clique no botão processar
@@ -44,6 +46,10 @@ document.getElementById('btn-processar').addEventListener('click', async () => {
 
             // Dados é um objeto com os dados organizados das caixas
             const dados = await estruturacao(dados_id)
+
+            // Graficar dados das caixa
+            graficos(dados)
+            
 
             console.log(dados)
 
