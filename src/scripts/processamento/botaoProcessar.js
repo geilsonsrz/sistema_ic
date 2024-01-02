@@ -49,9 +49,6 @@ document.getElementById('btn-processar').addEventListener('click', async () => {
 
             // Graficar dados das caixa
             graficos(dados)
-            
-
-            console.log(dados)
 
         }
 

@@ -3,17 +3,32 @@
 `
 
 
+// Gerar gráficos
+function graficos(dados) {
+    
+    // Identificação da seção campo de plotagem
+    const resultados = document.getElementById('resultados')
+    // Tornando visível ao primeiro clique.
+    resultados.classList.remove('tela-oculta')
 
-function graficos() {
+    // Inicialização do CANVAS para desenhar os gráficos
+    let canvas = document.createElement('canvas')
+    let div = document.createElement('div')
+    div.appendChild(canvas)
+    resultados.appendChild(div)
 
-    const ativar_tela = document.getElementById('resultados')
 
-    ativar_tela.classList.remove('tela-oculta')
+    // Desenhando no canvas e configurações
+    let contexto = canvas.getContext('2d')
 
-    const resultados = document.getElementById('graficos')
+    contexto.fillStyle = 'blue'
 
-    resultados.innerText = resultados.innerText + '\nMudou!'
+    contexto.fillRect(100, 100, 100, 100)
 
+
+
+
+    
 
 }
 
