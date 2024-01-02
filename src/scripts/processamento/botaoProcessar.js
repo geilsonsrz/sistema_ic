@@ -38,12 +38,14 @@ document.getElementById('btn-processar').addEventListener('click', async () => {
 
         }
 
-
         // Estruturando os dados nas caixas
         // Umidade e superfície são independentes
         if ( dados_id != "") {
 
-            await estruturacao(dados_id)
+            // Dados é um objeto com os dados organizados das caixas
+            const dados = await estruturacao(dados_id)
+
+            console.log(dados)
 
         }
 

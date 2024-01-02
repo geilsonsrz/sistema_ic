@@ -6,7 +6,7 @@
 import referencias_id from './referenciasId'
 
 
-
+// Função de estruturação
 function estruturacao(dados_id){
 
     // Objeto organizado com os dados
@@ -42,7 +42,7 @@ function estruturacao(dados_id){
 
     // Agregando Umidade e Superfície ao objeto
     dados['umidade'] = dados_id[referencias_id['humidad']]
-    dados['superfiei'] = dados_id[referencias_id['superficie']]
+    dados['superficie'] = dados_id[referencias_id['superficie']]
 
     // Retornando o Objeto dos dados estruturados
     return dados
