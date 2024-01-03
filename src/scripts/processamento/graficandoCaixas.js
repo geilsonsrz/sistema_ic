@@ -1,3 +1,5 @@
+import { Chart } from "chart.js"
+
 `
     Função para graficar os dados das caixas
 `
@@ -8,24 +10,16 @@ function graficos(dados) {
     
     // Identificação da seção campo de plotagem
     const resultados = document.getElementById('resultados')
+
+    // Identificação do link para os gráficos
+    const link_graficos = document.getElementById('link-graficos')
+
+
     // Tornando visível ao primeiro clique.
-    resultados.classList.remove('tela-oculta')
+    resultados.classList.remove('oculto')
+    link_graficos.classList.remove('oculto')
 
-    // Inicialização do CANVAS para desenhar os gráficos
-    let canvas = document.createElement('canvas')
-    let div = document.createElement('div')
-    div.appendChild(canvas)
-    resultados.appendChild(div)
-
-
-    // Desenhando no canvas e configurações
-    let contexto = canvas.getContext('2d')
-
-    contexto.fillStyle = 'blue'
-
-    contexto.fillRect(100, 100, 100, 100)
-
-
+    // Inicialização do gráfico
 
 
     
