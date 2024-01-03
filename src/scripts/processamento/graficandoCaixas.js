@@ -7,7 +7,7 @@ import { Chart } from "chart.js"
 
 // Gerar gráficos
 function graficos(dados) {
-    
+
     // Identificação da seção campo de plotagem
     const resultados = document.getElementById('resultados')
 
@@ -19,10 +19,17 @@ function graficos(dados) {
     resultados.classList.remove('oculto')
     link_graficos.classList.remove('oculto')
 
+
     // Inicialização do gráfico
 
 
+
+
+
     
+
+
+
 
 }
 
