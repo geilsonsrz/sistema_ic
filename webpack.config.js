@@ -28,5 +28,10 @@ module.exports = {
   },
   output: {
     filename: '[name].min.js'
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
   }
 }
