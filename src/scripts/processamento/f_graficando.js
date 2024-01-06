@@ -15,16 +15,25 @@ function graficos(dados) {
 
         // Tornando visível ao primeiro clique.
         document.getElementById('resultados').classList.remove('oculto')
-        document.getElementById('resultados').classList.remove('oculto')
+        document.getElementById('link-graficos').classList.remove('oculto')
 
 
-        area_resultados.append('div')
-            .attr('class', 'conteiner-grafico')
-            .text('TEXTO TEXTO TEXTO')
+        // Para cada elemento dos dados, gerar um gráfico
+        for (let chave in dados) {
+            
+            // Criação da divisão do gráfico
+            area_resultados.append('div')
+                .attr('class', 'conteiner-grafico')
+                .text(`${chave}`)
 
 
+            for (let i in dados[chave]) {
 
+                let dado = dados[chave][i][0]
 
+            }
+
+        }
 
         
 }
