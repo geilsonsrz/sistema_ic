@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server",
-    "scss": "sass --watch ./src/style/index.scss : ./dist/index.css"
+    "dev": "webpack-dev-server --open",
+    "scss": "sass --watch ./src/style/index.scss ./dist/index.css"
   },
   "keywords": [],
   "author": "",
