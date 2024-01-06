@@ -6,7 +6,7 @@ import capturaIdXml from "./capturaIdXml"
 // Estruturacao dos dados
 import estruturacao from "./estruturacao.js"
 // Gráficos
-import graficos from "./graficandoCaixas.js"
+import graficos from "./f_graficandoCaixas.js"
 
 
 // Ouvir o evento de clique no botão processar
