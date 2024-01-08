@@ -16,35 +16,6 @@ function graficos(dados) {
     document.getElementById('link-graficos').classList.remove('oculto')
 
 
-    // Especificando as funções para cada chaves
-    const funcoesChaves = {
-
-        'caixa01': (dado) => { },
-
-
-        'caixa02': (dado, id_area) => {
-
-            graficar(dado, id_area)
-
-         },
-
-
-        'caixa03': (dado) => { },
-
-
-        'umidade': (dado) => { },
-
-
-        // Criando gráfico da superfície
-        'superficie': (dados, id_area) => {
-
-            graficar(dados, id_area)
-
-        }
-
-    }
-
-
     // Para cada elemento dos dados, gerar um gráfico e cria uma área do gráfico
     for (let chave in dados) {
 
@@ -56,7 +27,7 @@ function graficos(dados) {
             .attr('id', id_area)
             .text(`${chave}`)
 
-        funcoesChaves[chave](dados[chave], id_area)
+        graficar(dados[chave], id_area)
 
     }
 
