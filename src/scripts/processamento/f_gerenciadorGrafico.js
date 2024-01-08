@@ -1,6 +1,9 @@
 `
     Função para graficar os dados das caixas
 `
+import graficar from "./f_graficar.js"
+
+
 
 // Gerar gráficos
 function graficos(dados) {
@@ -16,55 +19,41 @@ function graficos(dados) {
     // Especificando as funções para cada chaves
     const funcoesChaves = {
 
-        'caixa01': (dado) => {},
+        'caixa01': (dado) => { },
 
 
-        'caixa02': (dado) => {},
+        'caixa02': (dado) => { },
 
 
-        'caixa03': (dado) => {},
+        'caixa03': (dado) => { },
 
 
-        'umidade': (dado) => {},
+        'umidade': (dado) => { },
 
 
-        'superficie': (dado) => {
+        // Criando gráfico da superfície
+        'superficie': (dados, id_area) => {
 
-            const temperaturas = []
-            const momentos = []
-
-            for (let i in dado) {
-            
-                temperaturas.push(dado[i][0])
-
-                momentos.push(i)
-            
-            }
-
-            console.log(temperaturas)
-            console.log(momentos)
-
-            let dados = momentos.map(function(d, i) {
-                return { momento: d, temperatura: temperaturas[i] };
-            });
-
-
+            graficar(dados, id_area)
 
         }
 
     }
 
 
-    // Para cada elemento dos dados, gerar um gráfico
+    // Para cada elemento dos dados, gerar um gráfico e cria uma área do gráfico
     for (let chave in dados) {
+
+        const id_area = `id-${chave}`
 
         // Criação da divisão do gráfico
         area_resultados.append('div')
             .attr('class', 'conteiner-grafico')
+            .attr('id', id_area)
             .text(`${chave}`)
 
-        funcoesChaves[chave](dados[chave])
-        
+        funcoesChaves[chave](dados[chave], id_area)
+
     }
 
 
