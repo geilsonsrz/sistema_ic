@@ -22,7 +22,11 @@ function graficos(dados) {
         'caixa01': (dado) => { },
 
 
-        'caixa02': (dado) => { },
+        'caixa02': (dado, id_area) => {
+
+            graficar(dado, id_area)
+
+         },
 
 
         'caixa03': (dado) => { },
