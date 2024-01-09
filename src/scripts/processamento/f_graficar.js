@@ -13,7 +13,6 @@ import horarios from "./f_horarios.js";
 
 
 
-
 function graficar(dados, id_area) {
 
     // Converter momentos em strings para horas em float

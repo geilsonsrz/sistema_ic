@@ -43,7 +43,7 @@ function horarios(dados) {
         let diferenca = (momento - momento_inicial) / (1000 * 60 * 60)
 
         // Incremento do instante desde o primeiro horários com duas casas decimais
-        horarios.push(diferenca.toFixed(2))
+        horarios.push(parseFloat(diferenca.toFixed(2)))
 
     })
 
