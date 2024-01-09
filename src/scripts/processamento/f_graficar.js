@@ -6,8 +6,15 @@ RECEBE COMO PARÂMETRO O SEGUINTE FORMADO
 
 
 `
+import horarios from "./f_horarios.js";
+
+
+
 
 function graficar(dados, id_area) {
+
+    // Converter momentos para horas
+    const horas = horarios(dados)
 
 
     // Configurações do gráfico
@@ -36,17 +43,21 @@ function graficar(dados, id_area) {
         // Controle pra não capturar o contador
         if (n < quantidade_sensores_solo) {
 
-
+            // Array das temperaturas e momentos
             const temperaturas = []
             const momentos = []
 
+            // Incremento das temperaturas e momentos
             for (let i in dados) {
 
+                // Captura das temperaturas
                 temperaturas.push(dados[i][n])
 
+                // Conversão dos momentos para horas
                 momentos.push(i)
 
             }
+
 
             // Escala x e y
             let x = d3.scaleBand().domain(momentos).range([0, width]).padding(0.1);
