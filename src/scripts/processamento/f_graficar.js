@@ -5,6 +5,9 @@ RECEBE COMO PARÂMETRO O SEGUINTE FORMADO
     [temperaturas, momentos]
 
 
+    OBSERVAÇÕES:
+        - Falta arrumar as legendas
+
 `
 import horarios from "./f_horarios.js";
 
@@ -13,9 +16,8 @@ import horarios from "./f_horarios.js";
 
 function graficar(dados, id_area) {
 
-    // Converter momentos para horas
-    const horas = horarios(dados)
-
+    // Converter momentos em strings para horas em float
+    const momentos = horarios(dados)
 
     // Configurações do gráfico
     let margin = { top: 20, right: 20, bottom: 30, left: 50 };
@@ -45,19 +47,13 @@ function graficar(dados, id_area) {
 
             // Array das temperaturas e momentos
             const temperaturas = []
-            const momentos = []
 
             // Incremento das temperaturas e momentos
             for (let i in dados) {
 
                 // Captura das temperaturas
                 temperaturas.push(dados[i][n])
-
-                // Conversão dos momentos para horas
-                momentos.push(i)
-
             }
-
 
             // Escala x e y
             let x = d3.scaleBand().domain(momentos).range([0, width]).padding(0.1);
@@ -91,7 +87,6 @@ function graficar(dados, id_area) {
                 .call(d3.axisLeft(y));
 
 
-
             // Adiciona título ao eixo x
             svg.append("text")
                 .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + 20) + ")")
@@ -106,7 +101,6 @@ function graficar(dados, id_area) {
                 .attr("dy", "1em")
                 .style("text-anchor", "middle")
                 .text("Temperaturas");
-
 
         }
     }
