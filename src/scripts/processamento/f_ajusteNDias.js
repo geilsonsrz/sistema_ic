@@ -4,6 +4,7 @@
 import horarios from "./f_horarios.js";
 
 
+
 // Função principal de ajuste
 function ajusteNDias(dados) {
 
@@ -69,10 +70,21 @@ function ajusteNDias(dados) {
             [vetorialParte3(a, b, x, c, d, y)]
         ]
 
+        // Resolver o sistema linear
+        let t = resolverSistema(jac, -F)
 
+        // Verificando a convergência
+        if (Math.max(...t.map(Math.abs)) < tol) { break } else {
+            cont++
+            // Atualiza a solução
+            a = a + t[0]
+            c = c + t[1]
+            d = d + t[2]
+        }
 
     }
 
+    return a[0], c[0], d[0], b, x, y
 
 }
 
@@ -83,6 +95,7 @@ function ajusteNDias(dados) {
     - Média Aritmética
     - Calculos das partes da matriz jacobiana
     - Calculos das partes do campo vetorial
+    - Solução do sistema linear
 `
 // Média aritmética
 function mediaAritmetica(array) {
@@ -161,7 +174,6 @@ function somatorioJacParte8(a, b, x, c) {
     return soma;
 }
 
-
 // Cálculo do Campo Vetorial F
 // Vetorial Parte 1
 function vetorialParte1(a, b, x, c, d, y) {
@@ -194,6 +206,69 @@ function vetorialParte3(a, b, x, c, d, y) {
     const soma = resultado.reduce((acc, valor) => acc + valor, 0);
     return soma;
 }
+
+// Solução do Sistema Linear
+// É utilizado o método de Gauss
+// Código gerado pelo Chat GPT
+function resolverSistema(matrixA, vectorB) {
+    const numRows = matrixA.length;
+    const numCols = matrixA[0].length;
+
+    // Verificar se as dimensões são compatíveis
+    if (numRows !== vectorB.length) {
+        throw new Error('Dimensões incompatíveis');
+    }
+
+    // Criar cópias das matrizes para evitar modificação dos originais
+    const A = matrixA.map(row => [...row]);
+    const B = [...vectorB];
+
+    // Eliminação de Gauss
+    for (let i = 0; i < numRows; i++) {
+        // Pivoteamento parcial para evitar divisão por zero
+        let maxRowIndex = i;
+        for (let k = i + 1; k < numRows; k++) {
+            if (Math.abs(A[k][i]) > Math.abs(A[maxRowIndex][i])) {
+                maxRowIndex = k;
+            }
+        }
+
+        // Trocar linhas
+        [A[i], A[maxRowIndex]] = [A[maxRowIndex], A[i]];
+        [B[i], B[maxRowIndex]] = [B[maxRowIndex], B[i]];
+
+        // Escalonamento
+        const pivot = A[i][i];
+        if (pivot === 0) {
+            throw new Error('O sistema não tem uma solução única');
+        }
+
+        for (let j = i + 1; j < numRows; j++) {
+            const factor = A[j][i] / pivot;
+            B[j] -= factor * B[i];
+            for (let k = i; k < numCols; k++) {
+                A[j][k] -= factor * A[i][k];
+            }
+        }
+    }
+
+    // Retrosubstituição
+    const solution = new Array(numRows).fill(0);
+    for (let i = numRows - 1; i >= 0; i--) {
+        let sum = 0;
+        for (let j = i + 1; j < numCols; j++) {
+            sum += A[i][j] * solution[j];
+        }
+        solution[i] = (B[i] - sum) / A[i][i];
+    }
+
+    return solution;
+}
+
+
+
+
+
 
 
 export default ajusteNDias
