@@ -42,8 +42,9 @@ function graficos(dados) {
     
 
     // Função de ajuste dos dados
-    ajusteNDias(dados['superficie'])
+    let d = ajusteNDias(dados['superficie'])
 
+    console.log(d)
 
     
     // Criação do gráfico do ajuste

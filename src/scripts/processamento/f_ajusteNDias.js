@@ -4,220 +4,99 @@
 import horarios from "./f_horarios.js";
 
 
-
 // Função principal de ajuste
 function ajusteNDias(dados) {
-
     // Captura das temperaturas
-    const temperaturas = []
-    dados.forEach(dado => temperaturas.push(dado[0]));
+    const temperaturas = dados.map(dado => dado[0]);
 
-    // Captura dos horários
-    const horas = horarios(dados)
+    // Captura dos horários - certifique-se de implementar corretamente a função horarios
+    const horas = horarios(dados);
 
-    // Início das declarações para a função de ajuste
-    let y = temperaturas
-    let x = horas
+    // Converter tempo e temperatura para arrays numéricos
+    const x = horas.map(parseFloat);
+    const y = temperaturas.map(parseFloat);
 
-    // Estimativas dos valores iniciais dos coeficientes
-    // Temperatura máxima
-    let y_max = Math.max(y)
-    // Índice da temperatura máxima
-    let dia_max = Math.indexOf(Math.max(y))
-    // Média aritmética das temperaturas
-    let d = mediaAritmetica(y)
-    // Amplitude
-    let a = y_max - d
+    // Estimativas iniciais para os valores dos coeficientes da função seno
+    const y_max = Math.max(...y);
+    const dia_max = y.indexOf(y_max);
+    const d = y.reduce((acc, val) => acc + val, 0) / y.length;
+    const a = y_max - d;
 
-    // Função de ajuste
-    let b = (2 * Math.PI) / 24
-    let c = (Math.PI / 2) - (2 * Math.PI * dia_max) / 24
+    // MUDANÇA DE 365 PARA 24
+    const b = (2 * Math.PI) / 24;
+    const c = Math.PI / 2 - (2 * Math.PI * dia_max) / 24;
 
     // Tolerância e número máximo de iterações
-    let tol = 1e-5
-    let nMax = 200
+    const tol = 1e-5;
+    const nMax = 200;
 
-    // Quantidade de intervalos de tempo
-    let n = x.length
+    // Número de intervalos de tempo
+    const n = x.length;
 
-    // Contador de iterações
-    let cont = 1
-
+    let cont = 1; // Contador para o número de iterações
     while (cont < nMax) {
+        // Computação da Matriz Jacobiana
+        const parte1 = x.reduce((acc, val) => acc + Math.sin(b * val + c) ** 2, 0);
+        const parte2 = x.reduce(
+            (acc, val, i) => acc + Math.cos(b * val + c) * (2 * a * Math.sin(b * val + c) + d - y[i]),
+            0
+        );
+        const parte3 = x.reduce((acc, val) => acc + Math.sin(b * val + c), 0);
+        const parte4 = x.reduce(
+            (acc, val) => acc + Math.sin(b * val + c) * Math.cos(b * val + c),
+            0
+        );
+        const parte5 = x.reduce(
+            (acc, val, i) =>
+                acc +
+                (a * Math.cos(b * val + c) ** 2 - (a * Math.sin(b * val + c) + d - y[i]) * Math.sin(b * val + c)),
+            0
+        );
+        const parte6 = x.reduce((acc, val) => acc + Math.cos(b * val + c), 0);
+        const parte7 = x.reduce((acc, val) => acc + Math.sin(b * val + c), 0);
+        const parte8 = x.reduce((acc, val) => acc + a * Math.cos(b * val + c), 0);
 
-        // Cálculo da matriz jacobiana
-        // Funções dos cálculos logo abaixo
-        let parte1 = somatorioJacParte1(b, x, c)
-        let parte2 = somatorioJacParte2(b, x, c, a, d, y)
-        let parte3 = somatorioJacParte3(b, x, c)
-        let parte4 = somatorioJacParte4(b, x, c)
-        let parte5 = somatorioJacParte5(a, b, x, c, d, y)
-        let parte6 = somatorioJacParte6(b, x, c)
-        let parte7 = somatorioJacParte7(b, x, c)
-        let parte8 = somatorioJacParte8(a, b, x, c)
-
-        // Montando a Matriz Jacobiana com as partes
-        let jac = [
+        // Monta a matriz jac usando as partes intermediárias
+        const jac = [
             [parte1, parte2, parte3],
             [parte4, parte5, parte6],
             [parte7, parte8, n]
-        ]
+        ];
 
-        // Campo vetorial F
-        let F = [
-            [vetorialParte1(a, b, x, c, d, y)],
-            [vetorialParte2(a, b, x, c, d, y)],
-            [vetorialParte3(a, b, x, c, d, y)]
-        ]
+        // Computação do Campo Vetorial F
+        const F = [
+            [x.reduce((acc, val, i) => acc + (a * Math.sin(b * val + c) + d - y[i]) * Math.sin(b * val + c), 0)],
+            [x.reduce((acc, val, i) => acc + (a * Math.sin(b * val + c) + d - y[i]) * Math.cos(b * val + c), 0)],
+            [x.reduce((acc, val, i) => acc + a * Math.sin(b * val + c) + d - y[i], 0)]
+        ];
 
-        // Resolver o sistema linear
-        let t = resolverSistema(jac, -F)
+        // Resolvendo o sistema linear jac t = -F
+        const t = solveLinearSystem(jac, F);
 
-        // Verificando a convergência
-        if (Math.max(...t.map(Math.abs)) < tol) { break } else {
-            cont++
-            // Atualiza a solução
-            a = a + t[0]
-            c = c + t[1]
-            d = d + t[2]
+        // Verificar a convergência na norma do infinito
+        if (Math.max(...t.map(Math.abs)) < tol) break;
+        else {
+            cont += 1;
+
+            // Atualiza a solução usando variáveis temporárias
+            const aTemp = a + t[0];
+            const cTemp = c + t[1];
+            const dTemp = d + t[2];
+
+            // Atualiza as variáveis originais
+            a = aTemp;
+            c = cTemp;
+            d = dTemp;
         }
-
     }
 
-    return a[0], c[0], d[0], b, x, y
-
+    // Retorno dos coeficientes
+    return [a, c, d, b, x, y];
 }
 
-
-
-`
-    FUNÇÕES DE CÁLCULO DE APOIO PARA OS AJUSTE
-    - Média Aritmética
-    - Calculos das partes da matriz jacobiana
-    - Calculos das partes do campo vetorial
-    - Solução do sistema linear
-`
-// Média aritmética
-function mediaAritmetica(array) {
-
-    // Soma dos elementos
-    let soma = array.reduce((acc, val) => acc + val, 0)
-    // Média
-    let media = soma / array.length
-
-    return media
-}
-
-// Somatório Matriz Jacobiana
-// Parte 1
-function somatorioJacParte1(b, x, c) {
-    const resultado = b.map((bi, i) => Math.pow(Math.sin(bi * x[i] + c[i]), 2))
-    const soma = resultado.reduce((acc, valor) => acc + valor, 0)
-
-    return soma
-}
-// Parte 2
-function somatorioJacParte2(b, x, c, a, d, y) {
-    const resultado = b.map((bi, i) => {
-        const termo1 = Math.cos(bi * x[i] + c[i]);
-        const termo2 = 2 * a * Math.sin(bi * x[i] + c[i]) + d - y[i];
-        return termo1 * termo2;
-    });
-    const soma = resultado.reduce((acc, valor) => acc + valor, 0);
-
-    return soma;
-}
-// Parte 3
-function somatorioJacParte3(b, x, c) {
-    const resultado = b.map((bi, i) => Math.sin(bi * x[i] + c[i]));
-    const soma = resultado.reduce((acc, valor) => acc + valor, 0);
-
-    return soma;
-}
-// Parte 4
-function somatorioJacParte4(b, x, c) {
-    const resultado = b.map((bi, i) => Math.sin(bi * x[i] + c[i]) * Math.cos(bi * x[i] + c[i]));
-    const soma = resultado.reduce((acc, valor) => acc + valor, 0);
-
-    return soma;
-}
-// Parte 5
-function somatorioJacParte5(a, b, x, c, d, y) {
-    const resultado = b.map((bi, i) => {
-        const termo1 = a * Math.pow(Math.cos(bi * x[i] + c[i]), 2);
-        const termo2 = (a * Math.sin(bi * x[i] + c[i]) + d - y[i]) * Math.sin(bi * x[i] + c[i]);
-        return termo1 - termo2;
-    });
-    const soma = resultado.reduce((acc, valor) => acc + valor, 0);
-
-    return soma;
-}
-// Parte 6
-function somatorioJacParte6(b, x, c) {
-    const resultado = b.map((bi, i) => Math.cos(bi * x[i] + c[i]));
-    const soma = resultado.reduce((acc, valor) => acc + valor, 0);
-
-    return soma;
-}
-// Parte 7
-function somatorioJacParte7(b, x, c) {
-    const resultado = b.map((bi, i) => Math.sin(bi * x[i] + c[i]));
-    const soma = resultado.reduce((acc, valor) => acc + valor, 0);
-
-    return soma;
-}
-// Parte 8
-function somatorioJacParte8(a, b, x, c) {
-    const resultado = b.map((bi, i) => a * Math.cos(bi * x[i] + c[i]));
-    const soma = resultado.reduce((acc, valor) => acc + valor, 0);
-
-    return soma;
-}
-
-// Cálculo do Campo Vetorial F
-// Vetorial Parte 1
-function vetorialParte1(a, b, x, c, d, y) {
-    const resultado = b.map((bi, i) => {
-        const termo1 = (a * Math.sin(bi * x[i] + c[i]) + d - y[i]) * Math.sin(bi * x[i] + c[i]);
-        return termo1;
-    });
-    const soma = resultado.reduce((acc, valor) => acc + valor, 0);
-
-    return soma;
-}
-// Vetorial Parte 2
-function vetorialParte2(a, b, x, c, d, y) {
-    const resultado = b.map((bi, i) => {
-        const termo1 = (a * Math.sin(bi * x[i] + c[i]) + d - y[i]) * Math.cos(bi * x[i] + c[i]);
-        return termo1;
-    });
-
-    const soma = resultado.reduce((acc, valor) => acc + valor, 0);
-    return soma;
-}
-// Vetorial Parte 3
-function vetorialParte3(a, b, x, c, d, y) {
-    const resultado = b.map((bi, i) => {
-        const termo1 = a * Math.sin(bi * x[i] + c[i]);
-        const termo2 = d - y[i];
-        return termo1 + termo2;
-    });
-
-    const soma = resultado.reduce((acc, valor) => acc + valor, 0);
-    return soma;
-}
-
-// Solução do Sistema Linear
-// É utilizado o método de Gauss
-// Código gerado pelo Chat GPT
-function resolverSistema(matrixA, vectorB) {
+function solveLinearSystem(matrixA, vectorB) {
     const numRows = matrixA.length;
     const numCols = matrixA[0].length;
-
-    // Verificar se as dimensões são compatíveis
-    if (numRows !== vectorB.length) {
-        throw new Error('Dimensões incompatíveis');
-    }
 
     // Criar cópias das matrizes para evitar modificação dos originais
     const A = matrixA.map(row => [...row]);
@@ -264,8 +143,6 @@ function resolverSistema(matrixA, vectorB) {
 
     return solution;
 }
-
-
 
 
 
