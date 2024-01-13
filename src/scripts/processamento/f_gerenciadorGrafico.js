@@ -47,8 +47,8 @@ function graficos(dados) {
     console.log(d)
 
     
-    // Criação do gráfico do ajuste
-    graficar(dados['superficie'], 'id-ajuste')
+    // // Criação do gráfico do ajuste
+    // graficar(dados['superficie'], 'id-ajuste')
 
 
 }
