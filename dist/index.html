@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema IC</title>
-    <!-- D#.JS -->
+    <!-- D3.JS -->
     <script defer src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- NumJS -->
+    <script defer src="https://cdn.jsdelivr.net/gh/nicolaspanel/numjs@0.15.1/dist/numjs.min.js"></script>
+    <!-- MathJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/7.5.1/math.min.js"></script>
     <!-- <link rel="stylesheet" href="./index.css"> -->
     <script defer src="./index.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/gh/nicolaspanel/numjs@0.15.1/dist/numjs.min.js"></script>
-
 </head>
 
 <body class="claro" id="corpo">
@@ -52,14 +53,14 @@
 
             <label class="texto-subtitulo">Insira um arquivo:</label>
 
-            <input type="file" id="input-arquivo"/>
+            <input type="file" id="input-arquivo" />
 
             <span class="botao" id="btn-processar">Processar arquivo</span>
 
         </form>
-        
+
     </section>
-    
+
     <section class="tela oculto" id="resultados"></section>
 
 
