@@ -6,16 +6,10 @@ import horarios from "./f_horarios.js";
 `
 
 function argmax(array) {
-    const maxIndices = [];
-    const maxValue = Math.max(array);
 
-    array.forEach((value, index) => {
-        if (value === maxValue) {
-            maxIndices.push(index);
-        }
-    });
+    console.log(array)
 
-    return maxIndices;
+
 }
 
 
@@ -45,13 +39,12 @@ function ajusteNDias(dados) {
     // Estimativas iniciais para os valores dos coeficientes da função seno
     const y_max = nj.max(y);
 
-
-    const dia_max = argmax(temperaturas); // ID da maior temperatura
+    // ID da maior temperatura
+    const dia_max = argmax(y);
     dia_max.tolist()
 
-
-
-    const d = nj.mean(y).tolist();  // Média aritmética dos elementos da matriz
+    // Média aritmética dos elementos da matriz
+    const d = nj.mean(y).tolist();
     const a = y_max - d;
 
     // MUDANÇA DE 365 PARA 24
