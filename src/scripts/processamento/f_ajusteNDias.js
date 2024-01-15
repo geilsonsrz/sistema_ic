@@ -7,8 +7,14 @@ import horarios from "./f_horarios.js";
 
 function argmax(array) {
 
-    console.log(array)
+    const n = nj.max(array)
 
+    return array.reduce((indices, currentValue, currentIndex) => {
+        if (currentValue === value) {
+            indices.push(currentIndex);
+        }
+        return indices;
+    }, []);
 
 }
 
@@ -41,7 +47,6 @@ function ajusteNDias(dados) {
 
     // ID da maior temperatura
     const dia_max = argmax(y);
-    dia_max.tolist()
 
     // Média aritmética dos elementos da matriz
     const d = nj.mean(y).tolist();
