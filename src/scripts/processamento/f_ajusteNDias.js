@@ -55,14 +55,39 @@ function ajusteNDias(dados) {
     // Início dos calculos da matriz jacobiana
     while (cont < n_max) {
 
-        const parte1 = nj.sum(nj.sin(b*x+c)**2);
-        const parte2 = nj.sum(nj.cos(b*x+c)*(2*a*nj.sin(b*x+c)+d-y));
-        const parte3 = nj.sum(nj.sin(b*x+c));
-        const parte4 = nj.sum(nj.sin(b*x+c)*nj.cos(b*x+c));
-        const parte5 = nj.sum((a*nj.cos(b*x+c))**2-(a*nj.sin(b*x+c)+d-y)*nj.sin(b*x+c));
-        const parte6 = nj.sum(nj.cos(b*x+c));
-        const parte7 = nj.sum(nj.sin(b*x+c));
-        const parte8 = nj.sum(a*nj.cos(b*x+c));
+
+
+        // Função auxiliar para multiplicação escalar em um array/vetor
+        const scalarMultiply = (scalar, array) => math.map(array, element => math.multiply(scalar, element));
+
+        // Calculando as partes individuais para cada elemento de x e y
+        const parte1 = math.map(x, xi => math.sum(math.square(math.sin(math.add(math.multiply(b, xi), c)))));
+        const parte2 = math.map(x, xi => math.sum(math.multiply(
+            math.cos(math.add(math.multiply(b, xi), c)),
+            math.subtract(
+                scalarMultiply(2 * a, math.sin(math.add(math.multiply(b, xi), c))),
+                math.add(d, -y[x.indexOf(xi)])
+            )
+        )));
+        const parte3 = math.map(x, xi => math.sum(math.sin(math.add(math.multiply(b, xi), c))));
+        const parte4 = math.map(x, xi => math.sum(math.multiply(
+            math.sin(math.add(math.multiply(b, xi), c)),
+            math.cos(math.add(math.multiply(b, xi), c))
+        )));
+        const parte5 = math.map(x, xi => math.sum(math.subtract(
+            math.square(scalarMultiply(a, math.cos(math.add(math.multiply(b, xi), c)))),
+            math.multiply(
+                math.subtract(
+                    scalarMultiply(a, math.sin(math.add(math.multiply(b, xi), c))),
+                    d, -y[x.indexOf(xi)],
+                    math.sin(math.add(math.multiply(b, xi), c))
+                )
+            )
+        )));
+        const parte6 = math.map(x, xi => math.sum(math.cos(math.add(math.multiply(b, xi), c))));
+        const parte7 = math.map(x, xi => math.sum(math.sin(math.add(math.multiply(b, xi), c))));
+        const parte8 = math.map(x, xi => math.sum(scalarMultiply(a, math.cos(math.add(math.multiply(b, xi), c)))));
+
 
         const jac = nj.array([
             [parte1, parte2, parte3],
@@ -72,9 +97,9 @@ function ajusteNDias(dados) {
 
         // Computação do Campo Vetorial F
         const F = nj.array([
-            [nj.sum((a*nj.sin(b*x+c)+d-y)*nj.sin(b*x+c))],
-            [nj.sum((a*nj.sin(b*x+c)+d-y)*(nj.cos(b*x+c)))],
-            [nj.sum(a*nj.sin(b*x+c)+d-y)]
+            [nj.sum((a * nj.sin(b * x + c) + d - y) * nj.sin(b * x + c))],
+            [nj.sum((a * nj.sin(b * x + c) + d - y) * (nj.cos(b * x + c)))],
+            [nj.sum(a * nj.sin(b * x + c) + d - y)]
         ]);
 
         // Resolvendo o sistema linear jac t =-F
@@ -96,10 +121,6 @@ function ajusteNDias(dados) {
 
     // Retorno dos coeficientes
     let result = [a.tolist(), c.tolist(), d.tolist(), b, x.tolist(), y.tolist()];
-
-    console.log(result)
-
-
 
 
 }

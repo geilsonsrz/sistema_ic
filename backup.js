@@ -1,26 +1,6 @@
 import horarios from "./f_horarios.js";
 
 
-`
-    Funções de apoio para o ajuste
-`
-
-function argmax(array) {
-
-    const numero_maior = nj.max(array)
-
-
-    for (let i=0; i<array.length; i++) {
-
-        console.log(array[i])
-
-    }
-
-
-
-}
-
-
 
 
 
@@ -31,86 +11,132 @@ function argmax(array) {
 // Função principal de ajuste
 function ajusteNDias(dados) {
 
-    // Atribuição dos valores de x, horários
-    const tempos = new Array(horarios(dados))
+    // Incremento das temperaturas na lista y
+    const y = new Array();
+    dados.forEach(dado => { y.push(dado[0]) });
 
-    // Atribuição dos valores de y, temperaturas
-    const temperaturas = new Array()
-    for (let i in dados) { temperaturas.push(dados[i][0]) }
-
-
-    // Converter lista_dias para um array numérico
-    const x = nj.array(tempos, 'float64');
-    // Atribuindo os dados ao y
-    const y = nj.array(temperaturas, 'float64');
+    // Incremento dos momentos da lista x
+    const x = horarios(dados);
 
     // Estimativas iniciais para os valores dos coeficientes da função seno
     const y_max = nj.max(y);
 
-    // ID da maior temperatura
-    const dia_max = argmax(y);
+    // Momentos com a maior temperatura
+    // Captura os id da tempetarura mais alta
+    const momentosMaximos = (y, y_max) => {
+        const id_maximos = []
+        for (let i = 0; i < y.length; i++) {
+            if (y[i] === y_max) {
+                id_maximos.push(i)
+            }
+        }
+        return id_maximos
+    };
+    const dia_max = momentosMaximos(y, y_max);
 
     // Média aritmética dos elementos da matriz
     const d = nj.mean(y);
     const a = y_max - d;
 
-    // MUDANÇA DE 365 PARA 24
+    // Mudança de 365 para 24
     const b = (2 * Math.PI) / 24;
-    const c = Math.PI / 2 - (2 * Math.PI * dia_max[0]) / 24;
+    const c = (Math.PI / 2) - ((2 * Math.PI * dia_max[0]) / 24);
 
     // Tolerância e número máximo de iterações
     const tol = 1e-5;
-    const nMax = 200;
+    const n_max = 200;
+
 
     // Número de intervalos de tempo
-    const n = x.shape[0];
+    const n = x.length;
 
-    let cont = 1;  // Contador para o número de iterações
-    while (cont < nMax) {
-        // Computação da Matriz Jacobiana
-        const parte1 = nj.sum(nj.sin(b.mul(x).add(c)).pow(2));
-        const parte2 = nj.sum(nj.cos(b.mul(x).add(c)).mul(2 * a * nj.sin(b.mul(x).add(c)).add(d).subtract(y)));
-        const parte3 = nj.sum(nj.sin(b.mul(x).add(c)));
-        const parte4 = nj.sum(nj.sin(b.mul(x).add(c)).mul(nj.cos(b.mul(x).add(c))));
-        const parte5 = nj.sum(
-            a.mul(nj.cos(b.mul(x).add(c)).pow(2)).subtract(
-                a.mul(nj.sin(b.mul(x).add(c)).add(d).subtract(y)).mul(nj.sin(b.mul(x).add(c)))
+    // Contador da iterações
+    let cont = 1;
+    // Início dos calculos da matriz jacobiana
+    while (cont < n_max) {
+
+
+
+        // Função auxiliar para multiplicação escalar em um array/vetor
+        const scalarMultiply = (scalar, array) => math.map(array, element => math.multiply(scalar, element));
+
+        // Calculando as partes individuais para cada elemento de x e y
+        const parte1 = math.map(x, xi => math.sum(math.square(math.sin(math.add(math.multiply(b, xi), c)))));
+        const parte2 = math.map(x, xi => math.sum(math.multiply(
+            math.cos(math.add(math.multiply(b, xi), c)),
+            math.subtract(
+                scalarMultiply(2 * a, math.sin(math.add(math.multiply(b, xi), c))),
+                math.add(d, -y[x.indexOf(xi)])
             )
-        );
-        const parte6 = nj.sum(nj.cos(b.mul(x).add(c)));
-        const parte7 = nj.sum(nj.sin(b.mul(x).add(c)));
-        const parte8 = nj.sum(a.mul(nj.cos(b.mul(x).add(c))));
+        )));
+        const parte3 = math.map(x, xi => math.sum(math.sin(math.add(math.multiply(b, xi), c))));
+        const parte4 = math.map(x, xi => math.sum(math.multiply(
+            math.sin(math.add(math.multiply(b, xi), c)),
+            math.cos(math.add(math.multiply(b, xi), c))
+        )));
+        const parte5 = math.map(x, xi => math.sum(math.subtract(
+            math.square(scalarMultiply(a, math.cos(math.add(math.multiply(b, xi), c)))),
+            math.multiply(
+                math.subtract(
+                    scalarMultiply(a, math.sin(math.add(math.multiply(b, xi), c))),
+                    d, -y[x.indexOf(xi)],
+                    math.sin(math.add(math.multiply(b, xi), c))
+                )
+            )
+        )));
+        const parte6 = math.map(x, xi => math.sum(math.cos(math.add(math.multiply(b, xi), c))));
+        const parte7 = math.map(x, xi => math.sum(math.sin(math.add(math.multiply(b, xi), c))));
+        const parte8 = math.map(x, xi => math.sum(scalarMultiply(a, math.cos(math.add(math.multiply(b, xi), c)))));
 
-        const jac = nj.array([
-            [parte1.tolist(), parte2.tolist(), parte3.tolist()],
-            [parte4.tolist(), parte5.tolist(), parte6.tolist()],
-            [parte7.tolist(), parte8.tolist(), n]
-        ]);
 
-        // Computação do Campo Vetorial F
-        const F = nj.array([
-            [nj.sum(a.mul(nj.sin(b.mul(x).add(c)).add(d).subtract(y)).mul(nj.sin(b.mul(x).add(c))))],
-            [nj.sum(a.mul(nj.sin(b.mul(x).add(c)).add(d).subtract(y)).mul(nj.cos(b.mul(x).add(c))))],
-            [nj.sum(a.mul(nj.sin(b.mul(x).add(c)).add(d).subtract(y)))]
-        ]);
 
-        // Resolvendo o sistema linear jac t =-F
-        const t = nj.solve(jac, nj.neg(F));
+        console.log('Parte 1:', parte1);
+        console.log('Parte 2:', parte2);
+        console.log('Parte 3:', parte3);
+        console.log('Parte 4:', parte4);
+        console.log('Parte 5:', parte5);
+        console.log('Parte 6:', parte6);
+        console.log('Parte 7:', parte7);
+        console.log('Parte 8:', parte8);
 
-        // Verificar a convergência na norma do infinito
-        if (nj.max(nj.abs(t)).tolist() < tol) break;
-        else {
-            cont += 1;
 
-            // Atualiza a solução
-            a.add(t.get(0));
-            c.add(t.get(1));
-            d.add(t.get(2));
-        }
+
+
+
+
+        // const jac = nj.array([
+        //     [parte1, parte2, parte3],
+        //     [parte4, parte5, parte6],
+        //     [parte7, parte8, n]
+        // ]);
+
+        //     // Computação do Campo Vetorial F
+        //     const F = nj.array([
+        //         [nj.sum((a * nj.sin(b * x + c) + d - y) * nj.sin(b * x + c))],
+        //         [nj.sum((a * nj.sin(b * x + c) + d - y) * (nj.cos(b * x + c)))],
+        //         [nj.sum(a * nj.sin(b * x + c) + d - y)]
+        //     ]);
+
+        //     // Resolvendo o sistema linear jac t =-F
+        //     const t = math.lusolve(jac, nj.negative(F));
+
+        //     // Verificar a convergência na norma do infinito
+        //     if (nj.max(nj.abs(t)).tolist() < tol) break;
+        //     else {
+        cont += 1;
+
+        //         // Atualiza a solução
+        //         a.add(t.get(0));
+        //         c.add(t.get(1));
+        //         d.add(t.get(2));
+        //     }
+
+
     }
 
-    // Retorno dos coeficientes
-    return [a.tolist(), c.tolist(), d.tolist(), b, x.tolist(), y.tolist()];
+    // // Retorno dos coeficientes
+    // let result = [a.tolist(), c.tolist(), d.tolist(), b, x.tolist(), y.tolist()];
+
 
 }
 
