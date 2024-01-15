@@ -97,9 +97,27 @@ function ajusteNDias(dados) {
 
         // Computação do Campo Vetorial F
         const F = nj.array([
-            [nj.sum((a * nj.sin(b * x + c) + d - y) * nj.sin(b * x + c))],
-            [nj.sum((a * nj.sin(b * x + c) + d - y) * (nj.cos(b * x + c)))],
-            [nj.sum(a * nj.sin(b * x + c) + d - y)]
+            [nj.sum(math.multiply(math.sin(math.add(math.multiply(b, x), c)),
+                math.add(math.add(math.multiply(a, math.sin(math.add(math.multiply(b, x), c))), d, -y),
+                    math.sin(math.add(math.multiply(b, x), c)))))],
+            [nj.sum(math.multiply(
+                math.subtract(
+                    math.add(
+                        math.multiply(a, math.sin(math.add(math.multiply(b, x), c))),
+                        d,
+                        -y
+                    ),
+                    math.cos(math.add(math.multiply(b, x), c))
+                ),
+                math.cos(math.add(math.multiply(b, x), c))
+            ))],
+            [nj.sum(math.subtract(
+                math.add(
+                    math.multiply(a, math.sin(math.add(math.multiply(b, x), c))),
+                    d
+                ),
+                y
+            ))]
         ]);
 
         // Resolvendo o sistema linear jac t =-F
@@ -121,6 +139,8 @@ function ajusteNDias(dados) {
 
     // Retorno dos coeficientes
     let result = [a.tolist(), c.tolist(), d.tolist(), b, x.tolist(), y.tolist()];
+
+    console.log(result)
 
 
 }
