@@ -61,32 +61,38 @@ function ajusteNDias(dados) {
         const scalarMultiply = (scalar, array) => math.map(array, element => math.multiply(scalar, element));
 
         // Calculando as partes individuais para cada elemento de x e y
-        const parte1 = math.map(x, xi => math.sum(math.square(math.sin(math.add(math.multiply(b, xi), c)))));
-        const parte2 = math.map(x, xi => math.sum(math.multiply(
-            math.cos(math.add(math.multiply(b, xi), c)),
-            math.subtract(
-                scalarMultiply(2 * a, math.sin(math.add(math.multiply(b, xi), c))),
-                math.add(d, -y[x.indexOf(xi)])
+        const parte1 = math.sum(math.map(x, element => math.square(math.sin(math.add(math.multiply(b, element), c)))));
+
+        const parte2 = math.sum(math.multiply(
+            math.cos(math.add(math.multiply(b, x), c)),
+            math.add(
+                math.multiply(2, a, math.sin(math.add(math.multiply(b, x), c))),
+                d,
+                math.unaryMinus(y)
             )
-        )));
-        const parte3 = math.map(x, xi => math.sum(math.sin(math.add(math.multiply(b, xi), c))));
-        const parte4 = math.map(x, xi => math.sum(math.multiply(
-            math.sin(math.add(math.multiply(b, xi), c)),
-            math.cos(math.add(math.multiply(b, xi), c))
-        )));
-        const parte5 = math.map(x, xi => math.sum(math.subtract(
-            math.square(scalarMultiply(a, math.cos(math.add(math.multiply(b, xi), c)))),
+        ));
+        const parte3 = math.sum(math.sin(math.add(math.multiply(b, x), c)));
+
+        const parte4 = math.sum(math.multiply(
+            math.sin(math.add(math.multiply(b, x), c)),
+            math.cos(math.add(math.multiply(b, x), c))
+        ));
+
+        const parte5 = math.sum(math.subtract(
+            math.square(math.multiply(a, math.cos(math.add(math.multiply(b, x), c)))),
             math.multiply(
                 math.subtract(
-                    scalarMultiply(a, math.sin(math.add(math.multiply(b, xi), c))),
-                    d, -y[x.indexOf(xi)],
-                    math.sin(math.add(math.multiply(b, xi), c))
+                    math.add(math.multiply(a, math.sin(math.add(math.multiply(b, x), c))), d, -y),
+                    math.sin(math.add(math.multiply(b, x), c))
                 )
             )
-        )));
-        const parte6 = math.map(x, xi => math.sum(math.cos(math.add(math.multiply(b, xi), c))));
-        const parte7 = math.map(x, xi => math.sum(math.sin(math.add(math.multiply(b, xi), c))));
-        const parte8 = math.map(x, xi => math.sum(scalarMultiply(a, math.cos(math.add(math.multiply(b, xi), c)))));
+        ));
+
+        const parte6 = math.sum(math.cos(math.add(math.multiply(b, x), c)));
+
+        const parte7 = math.sum(math.sin(math.add(math.multiply(b, x), c)));
+
+        const parte8 = math.sum(math.multiply(a, math.cos(math.add(math.multiply(b, x), c))));
 
 
         const jac = nj.array([
@@ -97,21 +103,27 @@ function ajusteNDias(dados) {
 
         // Computação do Campo Vetorial F
         const F = nj.array([
-            [nj.sum(math.multiply(math.sin(math.add(math.multiply(b, x), c)),
-                math.add(math.add(math.multiply(a, math.sin(math.add(math.multiply(b, x), c))), d, -y),
-                    math.sin(math.add(math.multiply(b, x), c)))))],
-            [nj.sum(math.multiply(
+            [math.sum(math.multiply(
                 math.subtract(
                     math.add(
                         math.multiply(a, math.sin(math.add(math.multiply(b, x), c))),
                         d,
-                        -y
+                        math.unaryMinus(y)
+                    ),
+                    math.sin(math.add(math.multiply(b, x), c))
+                )
+            ))],
+            [math.sum(math.multiply(
+                math.subtract(
+                    math.add(
+                        math.multiply(a, math.sin(math.add(math.multiply(b, x), c))),
+                        d,
+                        math.unaryMinus(y)
                     ),
                     math.cos(math.add(math.multiply(b, x), c))
-                ),
-                math.cos(math.add(math.multiply(b, x), c))
+                )
             ))],
-            [nj.sum(math.subtract(
+            [math.sum(math.subtract(
                 math.add(
                     math.multiply(a, math.sin(math.add(math.multiply(b, x), c))),
                     d
