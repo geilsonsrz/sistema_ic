@@ -1,7 +1,30 @@
+import horarios from "./f_horarios.js";
+
+
+`
+    Funções de apoio para o ajuste
+`
+
+function argmax(array) {
+    const maxIndices = [];
+    const maxValue = Math.max(array);
+
+    array.forEach((value, index) => {
+        if (value === maxValue) {
+            maxIndices.push(index);
+        }
+    });
+
+    return maxIndices;
+}
+
+
+
+
+
 `
     FUNÇÃO DE AJUSTE DOS DADOS
 `
-import horarios from "./f_horarios.js";
 
 // Função principal de ajuste
 function ajusteNDias(dados) {
@@ -21,7 +44,13 @@ function ajusteNDias(dados) {
 
     // Estimativas iniciais para os valores dos coeficientes da função seno
     const y_max = nj.max(y);
-    const dia_max = nj.argmax(y).tolist(); // Convertendo para lista
+
+
+    const dia_max = argmax(temperaturas); // ID da maior temperatura
+    dia_max.tolist()
+
+
+
     const d = nj.mean(y).tolist();  // Média aritmética dos elementos da matriz
     const a = y_max - d;
 
@@ -82,9 +111,6 @@ function ajusteNDias(dados) {
 
     // Retorno dos coeficientes
     return [a.tolist(), c.tolist(), d.tolist(), b, x.tolist(), y.tolist()];
-
-
-
 
 }
 
