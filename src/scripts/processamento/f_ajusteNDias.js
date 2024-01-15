@@ -45,6 +45,23 @@ function ajusteNDias(dados) {
     const n_max = 200;
 
 
+    // Número de intervalos de tempo
+    const n = x.length;
+    
+    // Contador da iterações
+    let cont = 1;
+    // Início dos calculos da matriz jacobiana
+    while (cont < n_max) {
+
+        
+
+
+
+    }
+
+
+
+
     
 }
 
