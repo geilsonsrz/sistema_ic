@@ -50,109 +50,15 @@ function ajusteNDias(dados) {
     // Número de intervalos de tempo
     const n = x.length;
 
-    // Contador da iterações
+    // Controlador de iterações
     let cont = 1;
-    // Início dos calculos da matriz jacobiana
+
+    // Cálculo da matriz jacobiana
     while (cont < n_max) {
 
 
-
-        // Função auxiliar para multiplicação escalar em um array/vetor
-        const scalarMultiply = (scalar, array) => math.map(array, element => math.multiply(scalar, element));
-
-        // Calculando as partes individuais para cada elemento de x e y
-        const parte1 = math.sum(math.map(x, element => math.square(math.sin(math.add(math.multiply(b, element), c)))));
-
-        const parte2 = math.sum(math.multiply(
-            math.cos(math.add(math.multiply(b, x), c)),
-            math.add(
-                math.multiply(2, a, math.sin(math.add(math.multiply(b, x), c))),
-                d,
-                math.unaryMinus(y)
-            )
-        ));
-        const parte3 = math.sum(math.sin(math.add(math.multiply(b, x), c)));
-
-        const parte4 = math.sum(math.multiply(
-            math.sin(math.add(math.multiply(b, x), c)),
-            math.cos(math.add(math.multiply(b, x), c))
-        ));
-
-        const parte5 = math.sum(math.subtract(
-            math.square(math.multiply(a, math.cos(math.add(math.multiply(b, x), c)))),
-            math.multiply(
-                math.subtract(
-                    math.add(math.multiply(a, math.sin(math.add(math.multiply(b, x), c))), d, -y),
-                    math.sin(math.add(math.multiply(b, x), c))
-                )
-            )
-        ));
-
-        const parte6 = math.sum(math.cos(math.add(math.multiply(b, x), c)));
-
-        const parte7 = math.sum(math.sin(math.add(math.multiply(b, x), c)));
-
-        const parte8 = math.sum(math.multiply(a, math.cos(math.add(math.multiply(b, x), c))));
-
-
-        const jac = nj.array([
-            [parte1, parte2, parte3],
-            [parte4, parte5, parte6],
-            [parte7, parte8, n]
-        ]);
-
-        // Computação do Campo Vetorial F
-        const F = nj.array([
-            [math.sum(math.multiply(
-                math.subtract(
-                    math.add(
-                        math.multiply(a, math.sin(math.add(math.multiply(b, x), c))),
-                        d,
-                        math.unaryMinus(y)
-                    ),
-                    math.sin(math.add(math.multiply(b, x), c))
-                )
-            ))],
-            [math.sum(math.multiply(
-                math.subtract(
-                    math.add(
-                        math.multiply(a, math.sin(math.add(math.multiply(b, x), c))),
-                        d,
-                        math.unaryMinus(y)
-                    ),
-                    math.cos(math.add(math.multiply(b, x), c))
-                )
-            ))],
-            [math.sum(math.subtract(
-                math.add(
-                    math.multiply(a, math.sin(math.add(math.multiply(b, x), c))),
-                    d
-                ),
-                y
-            ))]
-        ]);
-
-        // Resolvendo o sistema linear jac t =-F
-        const t = math.lusolve(jac, nj.negative(F));
-
-        // Verificar a convergência na norma do infinito
-        if (nj.max(nj.abs(t)).tolist() < tol) break;
-        else {
-            cont += 1;
-
-            // Atualiza a solução
-            a.add(t.get(0));
-            c.add(t.get(1));
-            d.add(t.get(2));
-        }
-
-
+        cont++
     }
-
-    // Retorno dos coeficientes
-    let result = [a.tolist(), c.tolist(), d.tolist(), b, x.tolist(), y.tolist()];
-
-    console.log(result)
 
 
 }
