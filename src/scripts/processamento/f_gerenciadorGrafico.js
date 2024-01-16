@@ -2,6 +2,7 @@
     Função para graficar os dados das caixas
 `
 import graficar from "./f_graficar.js"
+import graficarMomentosDiferentes from "./f_graficarMomentosDiferentes.js"
 import ajusteNDias from "./f_ajusteNDias.js"
 import comparativo from "./f_comparativos.js"
 
@@ -56,7 +57,7 @@ function graficos(dados) {
         const dados_sensores = comparativo(dados, id_sensor)
 
         //Graficando
-        graficar(dados_sensores, id_comparativo)
+        graficarMomentosDiferentes(dados_sensores, id_comparativo)
 
 
     }

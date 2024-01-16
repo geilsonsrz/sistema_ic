@@ -43,8 +43,6 @@ function comparativo(dados, id_sensor) {
 
     }
 
-    console.log(dados_sensores)
-
     return dados_sensores
 
 }
