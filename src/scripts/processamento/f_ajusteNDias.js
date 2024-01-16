@@ -2,8 +2,6 @@ import horarios from "./f_horarios.js";
 
 
 
-
-
 `
     FUNÇÃO DE AJUSTE DOS DADOS
 `
