@@ -41,16 +41,19 @@ function graficos(dados) {
     // Criação dos gráficos comparativos
     // CRIAÇÃO DOS GRÁFICOS:
     // SENSOR 2m; SENSOR 1.6m; SENSOR 1.2m; SENSOR 0.8m; SENSOR 0.4m;
-    for (let id_sensor = 0; id_sensor < 5; id_sensor++) {
+    for (let id_sensor = 0; id_sensor < 1; id_sensor++) {
 
         // ID da área do gráfico
         const id_comparativo = `id-comparativo-sensor${id_sensor}`
 
-        //Criação da divisão do gráfico
-        area_resultados.append('div')
-            .attr('class', 'conteiner-grafico')
-            .attr('id', id_comparativo)
-            .text(`${id_comparativo}`)
+        // //Criação da divisão do gráfico
+        // area_resultados.append('div')
+        //     .attr('class', 'conteiner-grafico')
+        //     .attr('id', id_comparativo)
+        //     .text(`${id_comparativo}`)
+        
+        //Captura dos dados dos sensores
+        const dados_sensores = comparativo(dados, id_sensor)
 
 
     }
