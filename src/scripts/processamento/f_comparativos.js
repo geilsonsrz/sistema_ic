@@ -1,5 +1,10 @@
 `
     FUNÇÃO COMPARATIVA DAS TEMPERATURAS DOS SENSORES NA MESMA PROFUNDIDADE
+
+
+    RETORNO :
+        Devolve uma lista de lista com as temperaturas e horários dos sensores selecionaos
+
 `
 import horarios from "./f_horarios.js"
 
@@ -21,28 +26,23 @@ function comparativo(dados, id_sensor) {
         if (caixa.length > 0) {
 
             // Dados por caixa
-            const momentos = []
             const temperaturas = []
+            const horas = horarios(caixa)
 
             caixa.forEach( linha => {
 
-                let momento = linha[linha.length-1]
                 let temperatura = linha[id_sensor]
 
-                momentos.push(momento)
                 temperaturas.push(temperatura)
                 
             });
 
-            let horas = horarios(momentos)
-
-            let dados_caixa = [temperaturas, horas]
-
-            dados_sensores.push(dados_caixa)
+            dados_sensores.push([temperaturas, horas])
 
         }
 
     }
+
     console.log(dados_sensores)
 
     return dados_sensores

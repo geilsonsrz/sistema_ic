@@ -46,14 +46,17 @@ function graficos(dados) {
         // ID da área do gráfico
         const id_comparativo = `id-comparativo-sensor${id_sensor}`
 
-        // //Criação da divisão do gráfico
-        // area_resultados.append('div')
-        //     .attr('class', 'conteiner-grafico')
-        //     .attr('id', id_comparativo)
-        //     .text(`${id_comparativo}`)
+        //Criação da divisão do gráfico
+        area_resultados.append('div')
+            .attr('class', 'conteiner-grafico')
+            .attr('id', id_comparativo)
+            .text(`${id_comparativo}`)
         
         //Captura dos dados dos sensores
         const dados_sensores = comparativo(dados, id_sensor)
+
+        //Graficando
+        graficar(dados_sensores, id_comparativo)
 
 
     }

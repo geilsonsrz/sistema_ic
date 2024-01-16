@@ -5,6 +5,17 @@
 
     MOMENTO: 'data horário' -   '1994-05-20 23:20:20'
     HORÁRIO: hh.h%  -   23.34
+
+
+    OBSERVAÇÃO:
+
+        dados = dados da caixa
+
+        e não uma lista dos momentos.
+        
+        Ex.:
+
+        dados = [ [dado1, dado2, ..., dadoN, momento], ... ]
 `
 
 function horarios(dados) {
