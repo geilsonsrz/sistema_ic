@@ -3,7 +3,7 @@
 `
 import ajusteNDias from "./f_ajusteNDias.js"
 import comparativo from "./f_comparativos.js"
-import graficar from "./f_graficar.js"
+import graficarCaixa from "./f_graficarCaixa.js"
 import graficarMomentosDiferentes from "./f_graficarMomentosDiferentes.js"
 import mediaSensores from "./f_mediaSensores.js"
 
@@ -34,7 +34,7 @@ function graficos(dados) {
     //         .attr('id', id_area)
     //         .text(`${chave}`)
 
-    //     graficar(dados[chave], id_area)
+    //     graficarCaixa(dados[chave], id_area)
 
     // }
 
