@@ -1,10 +1,11 @@
 `
     Função para graficar os dados das caixas
 `
-import graficar from "./f_graficar.js"
-import graficarMomentosDiferentes from "./f_graficarMomentosDiferentes.js"
 import ajusteNDias from "./f_ajusteNDias.js"
 import comparativo from "./f_comparativos.js"
+import graficar from "./f_graficar.js"
+import graficarMomentosDiferentes from "./f_graficarMomentosDiferentes.js"
+import mediaSensores from "./f_mediaSensores.js"
 
 
 
@@ -42,12 +43,12 @@ function graficos(dados) {
     // Criação dos gráficos comparativos
     // CRIAÇÃO DOS GRÁFICOS:
     // SENSOR 2m; SENSOR 1.6m; SENSOR 1.2m; SENSOR 0.8m; SENSOR 0.4m;
-    for (let id_sensor = 0; id_sensor < 1; id_sensor++) {
+    for (let id_sensor = 0; id_sensor < 5; id_sensor++) {
 
         // ID da área do gráfico
         const id_comparativo = `id-comparativo-sensor${id_sensor}`
 
-        //Criação da divisão do gráfico
+        //Criação da divisão do gráfico comparativo
         area_resultados.append('div')
             .attr('class', 'conteiner-grafico')
             .attr('id', id_comparativo)
@@ -56,8 +57,18 @@ function graficos(dados) {
         //Captura dos dados dos sensores
         const dados_sensores = comparativo(dados, id_sensor)
 
-        //Graficando
-        graficarMomentosDiferentes(dados_sensores, id_comparativo)
+        // Graficando comparativo
+        // graficarMomentosDiferentes(dados_sensores, id_comparativo)
+
+        // Criação da área do gráfico da temperatura média dos sensores
+        const id_media_sensor = `media-sensor${id_sensor}`
+        area_resultados.append('div')
+            .attr('class', 'conteiner-grafico')
+            .attr('id', id_media_sensor)
+            .text(id_media_sensor)
+        
+        const media_sensores = mediaSensores(dados_sensores)
+
 
 
     }
