@@ -6,9 +6,10 @@ document.getElementById('input-arquivo').addEventListener('change', (evento) => 
     // Captura do arquivo
     const arquivo = evento.target.files[0]
 
+    
     // Critérios de verificação do tipo do arquivo
     const verificacao_txt = (/\.txt$|\.xml/).exec(arquivo.name)
-
+    
     // Verificação do tipo do arquivo
     if (verificacao_txt) {
         
@@ -24,13 +25,15 @@ document.getElementById('input-arquivo').addEventListener('change', (evento) => 
             // Salvando dados no sessionStorage (memória temporária do navegador)
             // Limpando qualquer arquivo que esteja antes
             sessionStorage.clear()
-
+            
             // Incluindo o tipo de documento
             sessionStorage.setItem('tipo_documento', verificacao_txt)
             
             // Incluindo arquivo atual
             sessionStorage.setItem('conteudo', conteudo)
-
+            
+            // Registro do nome do arquivo selecionado
+            sessionStorage.setItem('nome_arquivo', arquivo.name)
         }
 
         // Chamada do leitor para ler o arquivo como texto (UTF-8)

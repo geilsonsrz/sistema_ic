@@ -5,9 +5,8 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 5em;
     z-index: 1;
-
+    
     .conteiner-link
     {
         position: absolute;
@@ -25,4 +24,17 @@
 
 }
 
+@media (min-width: 320px) {
+    .nav-bar
+    {
+        height: 3em;
+    }
+}
 
+
+@media (min-width: 376px) {
+    .nav-bar
+    {
+        height: 5em;
+    }
+}

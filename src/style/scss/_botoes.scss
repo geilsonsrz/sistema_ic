@@ -1,5 +1,20 @@
 @import './variaveis';
 
+
+.claro
+{
+    #sol { opacity: 0 }
+
+    #lua { opacity: 1 }
+}
+
+.escuro
+{
+    #sol { opacity: 1 }
+
+    #lua { opacity: 0 }
+}
+
 .botao
 {
     user-select: none;
@@ -26,22 +41,18 @@
 
     &:hover
     {
-        #sol { color: $sol }
+        #sol { color: $acender }
     
-        #lua {color: $lua}
+        #lua {color: $acender}
     }
 }
 
-.claro
+.formulario
 {
-    #sol { opacity: 0 }
-
-    #lua { opacity: 1 }
+    input
+    {
+        background-color: transparent;
+    }
 }
 
-.escuro
-{
-    #sol { opacity: 1 }
 
-    #lua { opacity: 0 }
-}

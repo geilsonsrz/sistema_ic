@@ -1,3 +1,17 @@
+.claro #sol {
+  opacity: 0;
+}
+.claro #lua {
+  opacity: 1;
+}
+
+.escuro #sol {
+  opacity: 1;
+}
+.escuro #lua {
+  opacity: 0;
+}
+
 .botao {
   user-select: none;
   display: flex;
@@ -19,21 +33,11 @@
   color: #FFFF00;
 }
 .btn-tema:hover #lua {
-  color: #191970;
+  color: #FFFF00;
 }
 
-.claro #sol {
-  opacity: 0;
-}
-.claro #lua {
-  opacity: 1;
-}
-
-.escuro #sol {
-  opacity: 1;
-}
-.escuro #lua {
-  opacity: 0;
+.formulario input {
+  background-color: transparent;
 }
 
 .formulario {
@@ -41,24 +45,38 @@
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
-  width: 30%;
-  height: 15em;
   border: 0.1em solid #000000;
   border-radius: 1em;
   background-color: #4682B4;
 }
 .formulario .texto-subtitulo {
   user-select: none;
-  text-transform: uppercase;
 }
 
+@media (min-width: 320px) {
+  .formulario {
+    width: 95%;
+    height: 20em;
+  }
+}
+@media (min-width: 376px) {
+  .formulario {
+    width: 80%;
+    height: 18em;
+  }
+}
+@media (min-width: 769px) {
+  .formulario {
+    width: 65%;
+    height: 15em;
+  }
+}
 .nav-bar {
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 5em;
   z-index: 1;
 }
 .nav-bar .conteiner-link {
@@ -73,8 +91,22 @@
   color: inherit;
 }
 
+@media (min-width: 320px) {
+  .nav-bar {
+    height: 3em;
+  }
+}
+@media (min-width: 376px) {
+  .nav-bar {
+    height: 5em;
+  }
+}
 .resultado {
   display: none;
+}
+
+.conteiner-grafico {
+  background-color: #aa0000;
 }
 
 .tela {
@@ -99,12 +131,12 @@ body {
 
 .claro {
   color: #000000;
-  background-color: #6495ED;
+  background-color: #ADD8E6;
 }
 
 .escuro {
   color: #DCDCDC;
-  background-color: #00008B;
+  background-color: #000080;
 }
 
 .oculto {

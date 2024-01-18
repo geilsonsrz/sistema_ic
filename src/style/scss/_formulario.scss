@@ -1,23 +1,49 @@
 @import './variaveis';
 
+
 .formulario
 {
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
-    width: 30%;
-    height: 15em;
-
     border: 0.1em solid $cor-primaria;
     border-radius: 1em;
     background-color: $conteiner;
-
-
+    
     .texto-subtitulo
     {
         user-select: none;
-        text-transform: uppercase;
     }
-
 }
+
+
+@media (min-width: 320px) {
+    
+    .formulario
+    {
+        width: 95%;
+        height: 20em;        
+    }
+    
+}
+
+@media (min-width: 376px) {
+    
+    .formulario
+    {
+        width: 80%;
+        height: 18em;
+    }
+}
+
+@media (min-width: 769px) {
+    
+    .formulario
+    {
+        width: 65%;
+        height: 15em;
+    }
+}
+
+
