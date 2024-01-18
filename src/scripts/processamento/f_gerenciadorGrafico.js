@@ -6,7 +6,6 @@ import comparativo from "./f_comparativos.js"
 import graficarCaixa from "./f_graficarCaixa.js"
 import graficarMomentosDiferentes from "./f_graficarMomentosDiferentes.js"
 import graficar from "./f_graficarSimples.js"
-import horarios from "./f_horarios.js"
 import mediaSensores from "./f_mediaSensores.js"
 
 
@@ -21,31 +20,29 @@ function graficos(dados) {
     document.getElementById('resultados').classList.remove('oculto')
     document.getElementById('link-graficos').classList.remove('oculto')
 
+    // Para cada elemento dos dados, gerar um gráfico e cria uma área do gráfico
+    // CRIAÇÃO DOS GRÁFICOS:
+    // CAIXA01; CAIXA02; CAIXA03; ÚMIDADE; SUPERFÍCIE;
+    for (let chave in dados) {
 
-    // // Para cada elemento dos dados, gerar um gráfico e cria uma área do gráfico
-    // // CRIAÇÃO DOS GRÁFICOS:
-    // // CAIXA01; CAIXA02; CAIXA03; ÚMIDADE; SUPERFÍCIE;
-    // for (let chave in dados) {
+        // Criação do id da área
+        const id_area = `id-${chave}`
 
-    //     // Criação do id da área
-    //     const id_area = `id-${chave}`
+        // Criação da divisão do gráfico
+        area_resultados.append('div')
+            .attr('class', 'conteiner-grafico')
+            .attr('id', id_area)
+            .text(`${chave}`)
 
-    //     // Criação da divisão do gráfico
-    //     area_resultados.append('div')
-    //         .attr('class', 'conteiner-grafico')
-    //         .attr('id', id_area)
-    //         .text(`${chave}`)
+        graficarCaixa(dados[chave], id_area)
 
-    //     graficarCaixa(dados[chave], id_area)
-
-    // }
-
+    }
 
 
     // Criação dos gráficos comparativos
     // CRIAÇÃO DOS GRÁFICOS:
     // SENSOR 2m; SENSOR 1.6m; SENSOR 1.2m; SENSOR 0.8m; SENSOR 0.4m;
-    for (let id_sensor = 0; id_sensor < 1; id_sensor++) {
+    for (let id_sensor = 0; id_sensor < 5; id_sensor++) {
 
         // ID da área do gráfico
         const id_comparativo = `id-comparativo-sensor${id_sensor}`
@@ -60,7 +57,7 @@ function graficos(dados) {
         const dados_sensores = comparativo(dados, id_sensor)
 
         // Graficando comparativo
-        // graficarMomentosDiferentes(dados_sensores, id_comparativo)
+        graficarMomentosDiferentes(dados_sensores, id_comparativo)
 
         // Criação da área do gráfico da temperatura média dos sensores
         const id_media_sensor = `media-sensor${id_sensor}`
@@ -78,27 +75,14 @@ function graficos(dados) {
 
         // Capturando horas e temperaturas como lista
         for (let hora in media_sensores) {
-            horas.push(hora)
-            temperaturas_media.push(media_sensores[hora])
+            horas.push(Number(hora))
+            temperaturas_media.push(Number(media_sensores[hora]))
         }
 
         graficar(temperaturas_media, horas, id_media_sensor)
 
 
-
-
     }
-
-
-
-    
-
-
-
-
-
-
-
 
 
 
@@ -120,12 +104,9 @@ function graficos(dados) {
 `
     
 
-
 }
 
 
 
 
 export default graficos
-
-

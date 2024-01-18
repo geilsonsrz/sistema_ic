@@ -41,12 +41,12 @@ function mediaSensores(sensores) {
             if (hora in temperaturas_horas) {
 
                 // Agregando a temperatura na lista no horário já registrado
-                temperaturas_horas[hora].push(temperaturas[n])
+                temperaturas_horas[hora].push(Number(temperaturas[n]))
 
             } else {
 
                 // Criando a lista no novo horário
-                temperaturas_horas[hora] = [temperaturas[n]]
+                temperaturas_horas[hora] = [Number(temperaturas[n])]
 
             }
         }
