@@ -18,6 +18,9 @@ function graficarCaixa(dados, id_area) {
     // Converter momentos em strings para horas em float
     const momentos = horarios(dados)
 
+    // Lista contendo todas as temperaturas
+    const todas_temperaturas = []
+
     // Configurações do gráfico
     let margin = { top: 20, right: 20, bottom: 30, left: 50 };
     let width = 400 - margin.left - margin.right;
@@ -29,7 +32,6 @@ function graficarCaixa(dados, id_area) {
         .attr('height', height + margin.top + margin.bottom)
         .append("g")
         .attr('transform', `translate(${margin.left}, ${margin.top})`)
-
 
     // Início do clico de montagem das linhas dos dados
     // Captura do tamanho da linha para saber quantidades de sensores
@@ -50,8 +52,11 @@ function graficarCaixa(dados, id_area) {
             // Incremento das temperaturas e momentos
             for (let i in dados) {
 
-                // Captura das temperaturas
+                // Captura da temperatura do sensor
                 temperaturas.push(dados[i][n])
+                // Registro da temperatura de todo o gráfico
+                todas_temperaturas.push(dados[i][n])
+
             }
 
             // Escala x e y
@@ -76,42 +81,54 @@ function graficarCaixa(dados, id_area) {
                 .attr('stroke', `${cores[tamanho_linha][n]}`)
                 .attr('stroke-width', 2);
 
-
-            // Definindo escala X
-            let legenda_x = [0, momentos[momentos.length-1]] 
-
-            // Configurações da escala
-            let escala_x = d3.scaleLinear()
-                .domain(legenda_x)
-                .range([0, width])
-                .nice()
-
-            // Adiciona escalas aos eixos x e y
-            svg.append('g')
-                .attr('transform', `translate(0, ${height})`)
-                .call(d3.axisBottom(escala_x));
-
-            svg.append('g')
-                .call(d3.axisLeft(y));
-
-
-            // Adiciona título ao eixo x
-            svg.append("text")
-                .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + 20) + ")")
-                .style("text-anchor", "middle")
-                .text("Momentos");
-
-            // Adiciona título ao eixo y
-            svg.append("text")
-                .attr("transform", "rotate(-90)")
-                .attr("y", 0 - margin.left)
-                .attr("x", 0 - (height / 2))
-                .attr("dy", "1em")
-                .style("text-anchor", "middle")
-                .text("Temperaturas");
-
         }
     }
+
+    // Definindo escala X
+    let legenda_x = [0, momentos[momentos.length - 1]]
+
+    // Configurações da escala X
+    let escala_x = d3.scaleLinear()
+        .domain(legenda_x)
+        .range([0, width])
+        .nice()
+    
+    // Definindo escala Y
+    let temp_minima = math.min(todas_temperaturas)
+    let temp_maxima = math.max(todas_temperaturas)
+    let legenda_y = [temp_minima, temp_maxima]
+
+    console.log(temp_minima)
+
+    // Configurações da escala Y
+    let escala_y = d3.scaleLinear()
+        .domain(legenda_y)
+        .range([height, 0])
+        .nice()
+
+    // Adiciona escalas aos eixos x e y
+    svg.append('g')
+        .attr('transform', `translate(0, ${height})`)
+        .call(d3.axisBottom(escala_x));
+
+    svg.append('g')
+        .call(d3.axisLeft(escala_y));
+
+
+    // Adiciona título ao eixo x
+    svg.append("text")
+        .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + 20) + ")")
+        .style("text-anchor", "middle")
+        .text("Momentos");
+
+    // Adiciona título ao eixo y
+    svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x", 0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text("Temperaturas");
 
 }
 
