@@ -13,6 +13,10 @@ import mediaSensores from "./f_mediaSensores.js"
 // Gerar gráficos
 function graficos(dados) {
 
+    // Garantindo que não será criado multiplos gráficos por precionar o botão processar várias vezes
+    // Limpando elementos filhos caso existam
+    document.getElementById('resultados').innerHTML = ''
+
     // Identificação da seção campo de plotagem
     const area_resultados = d3.select('#resultados')
 

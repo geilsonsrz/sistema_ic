@@ -25,15 +25,15 @@ document.getElementById('btn-processar').addEventListener('click', async () => {
 
         // Controle do tipo do documento .txt
         if (tipo_documento == '.txt') {
-            
+
             dados_id = await capturaIdTxt(conteudo)
 
-        // Controle do tipo do documento .xml
+            // Controle do tipo do documento .xml
         } else if (tipo_documento == '.xml') {
-            
+
             dados_id = await capturaIdXml(conteudo)
 
-        // Seguda prevenção de outro tipo de documento
+            // Seguda prevenção de outro tipo de documento
         } else {
 
             console.log('Verific1ar o tipo do arquivo.')
@@ -42,7 +42,7 @@ document.getElementById('btn-processar').addEventListener('click', async () => {
 
         // Estruturando os dados nas caixas
         // Umidade e superfície são independentes
-        if ( dados_id != "") {
+        if (dados_id != "") {
 
             // Dados é um objeto com os dados organizados das caixas
             const dados = await estruturacao(dados_id)
@@ -51,7 +51,6 @@ document.getElementById('btn-processar').addEventListener('click', async () => {
             graficos(dados)
 
         }
-
 
     } else {
 
