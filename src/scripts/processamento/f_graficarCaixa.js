@@ -77,10 +77,19 @@ function graficarCaixa(dados, id_area) {
                 .attr('stroke-width', 2);
 
 
-            // Adiciona os eixos x e y
+            // Definindo escala X
+            let legenda_x = [0, momentos[momentos.length-1]] 
+
+            // Configurações da escala
+            let escala_x = d3.scaleLinear()
+                .domain(legenda_x)
+                .range([0, width])
+                .nice()
+
+            // Adiciona escalas aos eixos x e y
             svg.append('g')
                 .attr('transform', `translate(0, ${height})`)
-                .call(d3.axisBottom(x));
+                .call(d3.axisBottom(escala_x));
 
             svg.append('g')
                 .call(d3.axisLeft(y));
