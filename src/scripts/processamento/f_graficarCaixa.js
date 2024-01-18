@@ -4,10 +4,6 @@ Função para graficar
 RECEBE COMO PARÂMETRO O SEGUINTE FORMADO
     [temperaturas, momentos]
 
-
-    OBSERVAÇÕES:
-        - Falta arrumar as legendas
-
 `
 import horarios from "./f_horarios.js";
 
@@ -19,7 +15,7 @@ function graficarCaixa(dados, id_area) {
     const momentos = horarios(dados)
 
     // Lista contendo todas as temperaturas
-    const todas_temperaturas = []
+    let todas_temperaturas = []
 
     // Configurações do gráfico
     let margin = { top: 20, right: 20, bottom: 30, left: 50 };
@@ -54,12 +50,12 @@ function graficarCaixa(dados, id_area) {
 
                 // Captura da temperatura do sensor
                 temperaturas.push(dados[i][n])
-                // Registro da temperatura de todo o gráfico
-                todas_temperaturas.push(dados[i][n])
-
+                
             }
+            // Agregando as temperatura de todo o gráfico
+            todas_temperaturas = todas_temperaturas.concat(temperaturas)
 
-            // Escala x e y
+            // Escala x e y para desenhar o gráfico
             let x = d3.scaleBand().domain(momentos).range([0, width]).padding(0.1);
 
             // let y = d3.scaleLinear().domain([0, d3.max(temperaturas)]).range([height, 0]);
@@ -97,8 +93,6 @@ function graficarCaixa(dados, id_area) {
     let temp_minima = math.min(todas_temperaturas)
     let temp_maxima = math.max(todas_temperaturas)
     let legenda_y = [temp_minima, temp_maxima]
-
-    console.log(temp_minima)
 
     // Configurações da escala Y
     let escala_y = d3.scaleLinear()

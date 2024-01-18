@@ -83,6 +83,7 @@ function graficos(dados) {
             temperaturas_media.push(Number(media_sensores[hora]))
         }
 
+        // Graficando as temperaturas média dos sensores
         graficar(temperaturas_media, horas, id_media_sensor)
 
 

@@ -68,29 +68,49 @@ function graficar(temperaturas, horarios, id_area, cor = 9) {
         .attr('stroke-width', 2);
 
 
-    // Adiciona os eixos x e y
-    svg.append('g')
-        .attr('transform', `translate(0, ${height})`)
-        .call(d3.axisBottom(x));
+   // Definindo escala X
+   let legenda_x = [0, horarios[horarios.length - 1]]
 
-    svg.append('g')
-        .call(d3.axisLeft(y));
+   // Configurações da escala X
+   let escala_x = d3.scaleLinear()
+       .domain(legenda_x)
+       .range([0, width])
+       .nice()
+
+   // Definindo escala Y
+   let temp_minima = math.min(temperaturas)
+   let temp_maxima = math.max(temperaturas)
+   let legenda_y = [temp_minima, temp_maxima]
+
+   // Configurações da escala Y
+   let escala_y = d3.scaleLinear()
+       .domain(legenda_y)
+       .range([height, 0])
+       .nice()
+
+   // Adiciona escalas aos eixos x e y
+   svg.append('g')
+       .attr('transform', `translate(0, ${height})`)
+       .call(d3.axisBottom(escala_x));
+
+   svg.append('g')
+       .call(d3.axisLeft(escala_y));
 
 
-    // Adiciona título ao eixo x
-    svg.append("text")
-        .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + 20) + ")")
-        .style("text-anchor", "middle")
-        .text("Momentos");
+   // Adiciona título ao eixo x
+   svg.append("text")
+       .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + 20) + ")")
+       .style("text-anchor", "middle")
+       .text("Momentos");
 
-    // Adiciona título ao eixo y
-    svg.append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 0 - margin.left)
-        .attr("x", 0 - (height / 2))
-        .attr("dy", "1em")
-        .style("text-anchor", "middle")
-        .text("Temperaturas");
+   // Adiciona título ao eixo y
+   svg.append("text")
+       .attr("transform", "rotate(-90)")
+       .attr("y", 0 - margin.left)
+       .attr("x", 0 - (height / 2))
+       .attr("dy", "0.5em")
+       .style("text-anchor", "middle")
+       .text("Temperaturas")
 
 }
 
