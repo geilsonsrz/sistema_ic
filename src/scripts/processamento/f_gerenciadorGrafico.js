@@ -5,6 +5,8 @@ import ajusteNDias from "./f_ajusteNDias.js"
 import comparativo from "./f_comparativos.js"
 import graficarCaixa from "./f_graficarCaixa.js"
 import graficarMomentosDiferentes from "./f_graficarMomentosDiferentes.js"
+import graficar from "./f_graficarSimples.js"
+import horarios from "./f_horarios.js"
 import mediaSensores from "./f_mediaSensores.js"
 
 
@@ -67,7 +69,21 @@ function graficos(dados) {
             .attr('id', id_media_sensor)
             .text(id_media_sensor)
         
+        // Tempetaruras médias em formato de dicionário
         const media_sensores = mediaSensores(dados_sensores)
+
+        // Graficar as temperaturas médias por hora
+        const horas = []
+        const temperaturas_media = []
+
+        // Capturando horas e temperaturas como lista
+        for (let hora in media_sensores) {
+            horas.push(hora)
+            temperaturas_media.push(media_sensores[hora])
+        }
+
+        graficar(temperaturas_media, horas, id_media_sensor)
+
 
 
 
