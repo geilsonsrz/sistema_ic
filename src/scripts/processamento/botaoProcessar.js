@@ -23,10 +23,6 @@ document.getElementById('btn-processar').addEventListener('click', async () => {
     // Controle de existência do conteúdo
     if (conteudo) {
 
-        // Aviso de seleção do arquivo
-        
-
-
         // Controle do tipo do documento .txt
         if (tipo_documento == '.txt') {
 

@@ -46,4 +46,39 @@
     }
 }
 
+@media (min-width: 920px) {
+    
+    .formulario
+    {
+        width: 55%;
+        height: 15em;
+    }
+}
+
+@media (min-width: 1024px) {
+    
+    .formulario
+    {
+        width: 45%;
+        height: 15em;
+    }
+}
+
+@media (min-width: 1040px) {
+    
+    .formulario
+    {
+        width: 35%;
+        height: 15em;
+    }
+}
+
+@media (min-width: 1320px) {
+    
+    .formulario
+    {
+        width: 25%;
+        height: 15em;
+    }
+}
 

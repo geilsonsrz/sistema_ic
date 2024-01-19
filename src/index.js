@@ -17,7 +17,7 @@ import './scripts/processamento/botaoProcessar.js'
 // Aviso de seleção do arquivo
 if (sessionStorage.getItem('nome_arquivo')) {
 
-    document.getElementById('texto-aviso-arquivo').innerText = `ARQUIVO SELECIONADO\n${sessionStorage.getItem('nome_arquivo')}`
+    document.getElementById('texto-aviso-arquivo').innerText = `ARQUIVO PROCESSADO\n${sessionStorage.getItem('nome_arquivo')}`
 
 } else {
 

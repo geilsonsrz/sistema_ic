@@ -1,11 +1,10 @@
-.resultado
+#resultados
 {
-    display: none;
+    flex-direction: column;
+    gap: 3em;
+
+    .conteiner-grafico
+    {
+        background-color: #aa0000;
+    }
 }
-
-
-.conteiner-grafico
-{
-    background-color: #aa0000;
-}
-

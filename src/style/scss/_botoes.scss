@@ -31,8 +31,16 @@
     }
 }
 
-.btn-tema
+#botao-tema
 {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    z-index: 1;
+    margin: 1em 0% 0% 95%;
+
     .icone-tema
     {
         position: absolute;
