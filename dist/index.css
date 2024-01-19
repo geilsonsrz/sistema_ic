@@ -32,7 +32,8 @@
   justify-content: center;
   width: auto;
   z-index: 1;
-  margin: 1em 0% 0% 95%;
+  margin-left: 95vw;
+  margin-top: 2vh;
 }
 #botao-tema .icone-tema {
   position: absolute;
@@ -45,8 +46,15 @@
   color: #FFFF00;
 }
 
-.formulario input {
+/*
+    DESENHOS DA TELA INCIAL
+*/
+.area-figura {
+  width: auto;
+  height: 35em;
+  margin-top: 2em;
   background-color: transparent;
+  border: 0.1em solid black;
 }
 
 .formulario {
@@ -61,14 +69,29 @@
 .formulario .texto-subtitulo {
   user-select: none;
 }
+.formulario .area-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 5em;
+}
+.formulario .area-links #link-graficos {
+  position: absolute;
+  margin-left: 20em;
+}
 
 @media (min-width: 320px) {
   .formulario {
+    margin-top: 20vh;
     width: 95%;
     height: 20em;
   }
+  .formulario .area-link-graficos {
+    margin-top: 1em;
+  }
 }
-@media (min-width: 376px) {
+@media (max-width: 376px) {
   .formulario {
     width: 80%;
     height: 18em;
@@ -77,41 +100,23 @@
 @media (min-width: 769px) {
   .formulario {
     width: 65%;
-    height: 15em;
   }
 }
 @media (min-width: 920px) {
   .formulario {
     width: 55%;
-    height: 15em;
   }
 }
 @media (min-width: 1024px) {
   .formulario {
-    width: 45%;
-    height: 15em;
+    width: 50%;
   }
 }
 @media (min-width: 1040px) {
   .formulario {
-    width: 35%;
-    height: 15em;
+    width: 40%;
   }
 }
-@media (min-width: 1320px) {
-  .formulario {
-    width: 25%;
-    height: 15em;
-  }
-}
-#resultados {
-  flex-direction: column;
-  gap: 3em;
-}
-#resultados .conteiner-grafico {
-  background-color: #aa0000;
-}
-
 .tela {
   display: flex;
   align-items: center;
@@ -120,6 +125,24 @@
   min-height: 100vh;
 }
 
+.principal {
+  justify-content: space-between;
+  padding: 0em 1em;
+}
+
+#resultados {
+  flex-direction: column;
+  gap: 3em;
+}
+#resultados .conteiner-grafico {
+  background-color: #aa0000;
+}
+
+@media (max-width: 768px) {
+  .tela {
+    flex-direction: column;
+  }
+}
 * {
   box-sizing: border-box;
   margin: 0;

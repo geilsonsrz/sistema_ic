@@ -13,6 +13,9 @@ import mediaSensores from "./f_mediaSensores.js"
 // Gerar gráficos
 function graficos(dados) {
 
+    // Efeito do botão direcional para área do gráfico
+    document.getElementById('link-graficos').classList.add('aparecer')
+
     // Garantindo que não será criado multiplos gráficos por precionar o botão processar várias vezes
     // Limpando elementos filhos caso existam
     document.getElementById('resultados').innerHTML = ''
@@ -22,7 +25,6 @@ function graficos(dados) {
 
     // Tornando visível ao primeiro clique.
     document.getElementById('resultados').classList.remove('oculto')
-    document.getElementById('link-graficos').classList.remove('oculto')
 
     // Para cada elemento dos dados, gerar um gráfico e cria uma área do gráfico
     // CRIAÇÃO DOS GRÁFICOS:

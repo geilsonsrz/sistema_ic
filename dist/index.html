@@ -45,30 +45,31 @@
         <!-- Formulário de leitura do arquivo -->
         <form class="formulario">
 
-            <label class="texto-subtitulo" id="texto-aviso-arquivo"></label>
+            <span class="texto-subtitulo" id="texto-aviso-arquivo"></span>
 
-            <input type="file" id="input-arquivo" />
+            <!-- Input do Arquivo -->
+            <label for="input-arquivo" class="botao upload">Clique para fazer upload</label>
+            <input type="file" id="input-arquivo" style="display: none;">
 
-            <span class="botao" id="btn-processar">Processar arquivo</span>
+
+            <span class="area-links">
+                <span class="botao" id="btn-processar">Processar arquivo</span>
+                <a id="link-graficos" class="link" href="#resultados">Gráficos</a>
+            </span>
 
         </form>
-        
-        <!-- BOTÃO DIRECIONAL PARA OS GRÁFICOS -->
-        <span class="area-direcional">
-            
-            <a id="link-graficos" class="link oculto" href="#resultados">Gráficos</a>
-
-        </span>
 
         <!-- Figura de animação do solo -->
-        <span class="figura"></span>
+        <span class="area-figura"></span>
 
     </section>
 
     <!-- TELA DOS RESULTADOS -->
-    <section class="tela oculto" id="resultados"></div>
+    <section class="tela oculto" id="resultados"></section>
 
-
+    <footer>
+        FOOTER
+    </footer>
 
 </body>
 

@@ -9,4 +9,52 @@
     min-height: 100vh;
 }
 
+.principal
+{
+    justify-content: space-between;
+    padding: 0em 1em;
+}
+
+
+#resultados
+{
+    flex-direction: column;
+    gap: 3em;
+
+    .conteiner-grafico
+    {
+        background-color: #aa0000;
+    }
+}
+
+
+@media (max-width: 376px) {
+    
+}
+
+@media (max-width: 768px) {
+    
+    .tela
+    {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 920px) {
+    
+    
+}
+
+@media (min-width: 1024px) {
+    
+    
+}
+
+@media (min-width: 1040px) {
+    
+    
+}
+
+@media (min-width: 1320px) {
+}
 
