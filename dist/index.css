@@ -50,10 +50,22 @@
     margin-top: 1vh;
   }
 }
-@media (min-width: 425px) {
+@media (max-width: 425px) {
   #botao-tema {
     margin-left: 90vw;
     margin-top: 1vh;
+  }
+}
+@media (max-width: 630px) {
+  #botao-tema {
+    margin-left: 90vw;
+    margin-top: 1vh;
+  }
+}
+@media (min-width: 768px) {
+  #botao-tema {
+    margin-left: 94vw;
+    margin-top: 2vh;
   }
 }
 /*
@@ -64,13 +76,33 @@
   border: 0.1em solid black;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 630px) {
   .area-figura {
     position: absolute;
     width: 90%;
     height: 85vh;
     z-index: -1;
     background: red;
+  }
+}
+@media (min-width: 631px) {
+  .area-figura {
+    width: 40%;
+    height: 80vh;
+  }
+}
+@media (min-width: 820px) {
+  .area-figura {
+    width: 55%;
+    height: 85vh;
+    margin-top: 2em;
+  }
+}
+@media (min-width: 1024px) {
+  .area-figura {
+    width: 35em;
+    height: 85vh;
+    margin-top: 2em;
   }
 }
 .formulario {
@@ -140,6 +172,7 @@
 }
 @media (max-width: 630px) {
   .formulario {
+    padding: 1em;
     width: 80%;
     height: 15em;
   }
@@ -147,24 +180,21 @@
     margin-left: 20em;
   }
 }
-@media (min-width: 769px) {
+@media (min-width: 631px) {
   .formulario {
-    width: 65%;
+    min-height: 20em;
+    padding: 1em;
+    width: 20em;
+  }
+  #link-graficos.aparecer {
+    margin-left: 20em;
   }
 }
-@media (min-width: 920px) {
-  .formulario {
-    width: 55%;
-  }
-}
-@media (min-width: 1024px) {
-  .formulario {
-    width: 50%;
-  }
-}
-@media (min-width: 1040px) {
+@media (min-width: 768px) {
   .formulario {
     width: 20em;
+    padding: 0em 0.5em;
+    height: 15em;
   }
 }
 #resultados {
@@ -175,7 +205,7 @@
   background-color: #aa0000;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 630px) {
   .tela {
     display: flex;
     align-items: center;
@@ -186,6 +216,26 @@
   .principal {
     flex-direction: column;
     justify-content: center;
+  }
+}
+@media (min-width: 631px) {
+  .principal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 3em;
+    min-height: 100vh;
+  }
+}
+@media (min-width: 768px) {
+  .principal {
+    align-items: center;
+  }
+}
+@media (min-width: 820px) {
+  .principal {
+    justify-content: space-between;
+    padding: 0em 3%;
   }
 }
 * {

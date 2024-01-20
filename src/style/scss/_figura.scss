@@ -9,18 +9,47 @@
 }
 
 
-@media (max-width: 425px) {
+@media (max-width: 630px) {
     
     .area-figura {
         position: absolute;
         width: 90%;
         height: 85vh;
-
         z-index: -1;
-
-
         background: red;
     }
-
 }
+
+@media (min-width:631px) {
+
+    .area-figura
+    {
+        width: 40%;
+        height: 80vh;
+
+    }
+}
+
+@media (min-width: 820px) {
+
+    .area-figura
+    {
+        width: 55%;
+        height: 85vh;
+        margin-top: 2em;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .area-figura
+    {
+        width: 35em;
+        height: 85vh;
+        margin-top: 2em;
+    }
+}
+
+
+
 

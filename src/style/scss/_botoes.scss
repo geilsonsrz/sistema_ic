@@ -65,15 +65,29 @@
         margin-left: 85vw;
         margin-top: 1vh;
     }
-
 }
 
-@media (min-width: 425px) {
+@media (max-width: 425px) {
 
     #botao-tema {
         margin-left: 90vw;
         margin-top: 1vh;
     }
+}
 
+@media (max-width: 630px) {
+
+    #botao-tema {
+        margin-left: 90vw;
+        margin-top: 1vh;
+    }
+}
+
+@media (min-width: 768px) {
+
+    #botao-tema {
+        margin-left: 94vw;
+        margin-top: 2vh;
+    }
 }
 
