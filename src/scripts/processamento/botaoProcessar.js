@@ -50,6 +50,9 @@ document.getElementById('btn-processar').addEventListener('click', async () => {
             // Graficar dados das caixa
             graficos(dados)
 
+            // EFEITOS DO SCSS
+            document.getElementById('link-graficos').classList.add('aparecer')
+
         }
 
     } else {

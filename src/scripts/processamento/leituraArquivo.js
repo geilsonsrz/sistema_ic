@@ -5,7 +5,6 @@ document.getElementById('input-arquivo').addEventListener('change', (evento) => 
 
     // Captura do arquivo
     const arquivo = evento.target.files[0]
-
     
     // Critérios de verificação do tipo do arquivo
     const verificacao_txt = (/\.txt$|\.xml/).exec(arquivo.name)
@@ -38,6 +37,9 @@ document.getElementById('input-arquivo').addEventListener('change', (evento) => 
 
         // Chamada do leitor para ler o arquivo como texto (UTF-8)
         leitor.readAsText(arquivo)
+
+        // EFEITOS DO SCSS
+        document.getElementById('btn-processar').classList.add('aparecer')
 
     } else {
 

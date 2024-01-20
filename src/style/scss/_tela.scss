@@ -1,60 +1,29 @@
 @import './variaveis';
 
 
-.tela {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    min-height: 100vh;
-}
-
-.principal
-{
-    justify-content: space-between;
-    padding: 0em 1em;
-}
-
-
-#resultados
-{
+#resultados {
     flex-direction: column;
     gap: 3em;
 
-    .conteiner-grafico
-    {
+    .conteiner-grafico {
         background-color: #aa0000;
     }
 }
 
 
-@media (max-width: 376px) {
-    
-}
+@media (max-width: 767px) {
 
-@media (max-width: 768px) {
-    
-    .tela
-    {
-        flex-direction: column;
+    .tela {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 100vh;
     }
-}
 
-@media (min-width: 920px) {
-    
-    
-}
+    .principal {
+        flex-direction: column;
+        justify-content: center;
+    }
 
-@media (min-width: 1024px) {
-    
-    
 }
-
-@media (min-width: 1040px) {
-    
-    
-}
-
-@media (min-width: 1320px) {
-}
-

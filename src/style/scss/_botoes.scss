@@ -1,22 +1,27 @@
 @import './variaveis';
 
 
-.claro
-{
-    #sol { opacity: 0 }
+.claro {
+    #sol {
+        opacity: 0
+    }
 
-    #lua { opacity: 1 }
+    #lua {
+        opacity: 1
+    }
 }
 
-.escuro
-{
-    #sol { opacity: 1 }
+.escuro {
+    #sol {
+        opacity: 1
+    }
 
-    #lua { opacity: 0 }
+    #lua {
+        opacity: 0
+    }
 }
 
-.botao
-{
+.botao {
     user-select: none;
     display: flex;
     align-items: center;
@@ -24,37 +29,51 @@
     padding: 1em;
     border: 0.1em solid $cor-primaria;
     border-radius: 0.1em;
-    
-    &:active
-    {
+
+    &:active {
         transform: scale(0.99);
     }
 }
 
-#botao-tema
-{
+#botao-tema {
     position: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
     width: auto;
     z-index: 1;
-    margin-left: 95vw;
-    margin-top: 2vh;
 
-    .icone-tema
-    {
+    .icone-tema {
         position: absolute;
         color: inherit;
     }
 
-    &:hover
-    {
-        #sol { color: $acender }
-    
-        #lua {color: $acender}
+    &:hover {
+        #sol {
+            color: $acender
+        }
+
+        #lua {
+            color: $acender
+        }
     }
 }
 
+@media (max-width: 375px) {
 
+    #botao-tema {
+        margin-left: 85vw;
+        margin-top: 1vh;
+    }
+
+}
+
+@media (min-width: 425px) {
+
+    #botao-tema {
+        margin-left: 90vw;
+        margin-top: 1vh;
+    }
+
+}
 

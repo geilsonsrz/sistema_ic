@@ -4,9 +4,23 @@
 
 .area-figura
 {
-    width: auto;
-    height: 35em;
-    margin-top: 2em;
     background-color: transparent;
     border: .1em solid black;
 }
+
+
+@media (max-width: 425px) {
+    
+    .area-figura {
+        position: absolute;
+        width: 90%;
+        height: 85vh;
+
+        z-index: -1;
+
+
+        background: red;
+    }
+
+}
+
