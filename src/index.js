@@ -2,6 +2,7 @@
 import './style/index.scss'
 
 // Scripts de efeitos SCSS e funcionalidades
+import './scripts/efeitos_estilos/figura.js'
 import './scripts/efeitos_estilos/tema.js'
 
 // SCRIPT DE PROCESSAMENTO DOS DADOS
