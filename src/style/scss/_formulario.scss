@@ -6,7 +6,7 @@
     align-items: flex-start;
     justify-content: space-around;
     flex-direction: column;
-    border: 0.1em solid $cor-primaria;
+    // border: 0.1em solid $cor-primaria;
     background-color: $conteiner;
 
     .texto-subtitulo {
@@ -19,29 +19,13 @@
         justify-content: center;
         width: auto;
 
-        .botao-processar {
-            user-select: none;
-            padding: 1em;
-            border: 0.1em solid $cor-primaria;
-            border-radius: 0.1em;
-            transition: 0.05s;
-
-            &:active {
-                transform: scale(0.99);
-            }
-        }
-
-        #btn-processar.aparecer {
-            opacity: 1;
-        }
-
         .link-graficos {
             position: absolute;
             user-select: none;
             text-decoration: none;
             color: $cor-primaria;
             padding: 0.5em 1em;
-            border: 0.1em solid black;
+            // border: 0.1em solid black;
             border-radius: 2em;
             transform: scale(0.1);
             opacity: 0;

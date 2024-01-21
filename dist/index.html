@@ -19,7 +19,7 @@
 <body class="claro" id="corpo">
 
     <!-- BOTAO TEMA -->
-    <span class="botao" id="botao-tema">
+    <span id="botao-tema">
         <!-- SOL -->
         <span id="sol" class="icone-tema">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -48,13 +48,27 @@
             <span class="texto-subtitulo" id="texto-aviso-arquivo"></span>
 
             <!-- Input do Arquivo -->
-            <label for="input-arquivo" class="botao upload" id="input-label">Clique para fazer upload</label>
+            <label for="input-arquivo" class="btn" id="input-label">
+                <span class="ln" id="ln1"></span>
+                <span class="ln" id="ln2"></span>
+                <span class="ln" id="ln3"></span>
+                <span class="ln" id="ln4"></span>
+                <span class="nome-btn">Clique para fazer upload</span>
+            </label>
             <input type="file" id="input-arquivo" style="display: none;">
 
 
             <span class="area-botoes">
-                <span class="botao-processar" id="btn-processar">Processar arquivo</span>
+
+                <span class="btn" id="btn-processar">
+                    <svg>
+                        <rect></rect>
+                    </svg>
+                    Processar arquivo
+                </span>
+
                 <a id="link-graficos" class="link-graficos" href="#resultados">Gráficos</a>
+            
             </span>
 
         </form>

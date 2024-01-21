@@ -1,16 +1,138 @@
 /*
     DESENHOS DA TELA INCIAL
 */
+$cor-fatia: rgb(65, 65, 65);
+$cor-hover-fatia: blueviolet;
+$cor-fundo-area: rgba(255, 255, 255, 0);
+$cor-borda-area: black;
 
-.area-figura
-{
-    background-color: transparent;
-    border: .1em solid black;
+$cor-superficie: #228B22;
+$cor-04m: #8B4513;
+$cor-08m: #6495ED;
+$cor-12m: #FFD700;
+$cor-16m: #800080;
+$cor-20m: #FF4500;
+
+
+#fatia-superficie:hover {
+    background-color: $cor-superficie;
+    &::before { background-color: $cor-superficie; }
+    &::after { background-color: $cor-superficie; }
+}
+#fatia-04m:hover {
+    background-color: $cor-04m;
+    &::before { background-color: $cor-04m; }
+    &::after { background-color: $cor-04m; }
+}
+#fatia-08m:hover {
+    background-color: $cor-08m;
+    &::before { background-color: $cor-08m; }
+    &::after { background-color: $cor-08m; }
+}
+#fatia-12m:hover {
+    background-color: $cor-12m;
+    &::before { background-color: $cor-12m; }
+    &::after { background-color: $cor-12m; }
+}
+#fatia-16m:hover {
+    background-color: $cor-16m;
+    &::before { background-color: $cor-16m; }
+    &::after { background-color: $cor-16m; }
+}
+#fatia-20m:hover {
+    background-color: $cor-20m;
+    &::before { background-color: $cor-20m; }
+    &::after { background-color: $cor-20m; }
 }
 
 
+.area-figura {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: .1em solid $cor-borda-area;
+    background-color: $cor-fundo-area;
+
+    .figura {
+        position: relative;
+        transform: skewY(-15deg) translateX(6em) translateY(5em);
+
+        .fatia {
+            display: block;
+            position: relative;
+            width: 15em;
+            height: 3.5em;
+            transition: 0.5s;
+            z-index: var(--i);
+            animation: ladolado 5s ease-in-out infinite;
+            animation-delay: calc(-1s * var(--i));
+            background-color: $cor-fatia;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -9em;
+                height: 100%;
+                width: 9em;
+                transform-origin: right;
+                transform: skewY(45deg);
+                transition: 0.5s;
+                background-color: $cor-fatia;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 9em;
+                top: -9em;
+                transform-origin: bottom;
+                transform: skewX(45deg);
+                transition: 0.5s;
+                background-color: $cor-fatia;
+            }
+
+            &:hover {
+                transition: 0s;
+
+                &::before {
+                    transition: 0s;
+                }
+
+                &::after {
+                    transition: 0s;
+                }
+            }
+        }
+    }
+
+
+}
+
+// ANIMAÇÕES
+@keyframes ladolado {
+    0% {
+        transform: translateX(-5em);
+    } 
+    50% {
+        transform: translateX(5em);
+    }
+    100% {
+        transform: translateX(-5em);
+    }
+}
+
+
+
+
+
+
+// RESPONSIVIDADE
+
 @media (max-width: 630px) {
-    
+
     .area-figura {
         position: absolute;
         width: 90%;
@@ -21,8 +143,7 @@
 
 @media (min-width:631px) {
 
-    .area-figura
-    {
+    .area-figura {
         width: 40%;
         height: 80vh;
 
@@ -31,8 +152,7 @@
 
 @media (min-width: 820px) {
 
-    .area-figura
-    {
+    .area-figura {
         width: 55%;
         height: 85vh;
         margin-top: 2em;
@@ -41,25 +161,23 @@
 
 @media (min-width: 1024px) {
 
-    .area-figura
-    {
-        width: 35em;
-        height: 85vh;
+    .area-figura {
+        width: 40em;
+        height: 90vh;
         margin-top: 2em;
     }
 }
 
 @media (min-width: 1440px) {
     .area-figura {
-        width: 50em;
+        width: 60em;
     }
-    
+
 }
 
 @media (min-width: 1600px) {
     .area-figura {
         width: 60%;
     }
-    
-}
 
+}
