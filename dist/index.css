@@ -82,7 +82,6 @@
     width: 90%;
     height: 85vh;
     z-index: -1;
-    background: red;
   }
 }
 @media (min-width: 631px) {
@@ -103,6 +102,16 @@
     width: 35em;
     height: 85vh;
     margin-top: 2em;
+  }
+}
+@media (min-width: 1440px) {
+  .area-figura {
+    width: 50em;
+  }
+}
+@media (min-width: 1600px) {
+  .area-figura {
+    width: 60%;
   }
 }
 .formulario {
@@ -149,7 +158,7 @@
 }
 .formulario .area-botoes .link-graficos:hover {
   transition: 0s;
-  background-color: rgb(0, 214, 150);
+  background-color: #7bff07;
 }
 .formulario .area-botoes #link-graficos.aparecer {
   opacity: 1;
@@ -161,7 +170,6 @@
     align-items: flex-start;
     justify-content: space-around;
     border-radius: 1em;
-    background-color: rgba(0, 0, 0, 0.3);
     width: 90%;
     height: 15em;
     padding: 0.5em;
@@ -195,6 +203,13 @@
     width: 20em;
     padding: 0em 0.5em;
     height: 15em;
+  }
+}
+@media (min-width: 1440px) {
+  .formulario {
+    width: 30em;
+    padding: 0em 1em;
+    height: 30em;
   }
 }
 #resultados {

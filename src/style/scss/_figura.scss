@@ -16,7 +16,6 @@
         width: 90%;
         height: 85vh;
         z-index: -1;
-        background: red;
     }
 }
 
@@ -50,6 +49,17 @@
     }
 }
 
+@media (min-width: 1440px) {
+    .area-figura {
+        width: 50em;
+    }
+    
+}
 
-
+@media (min-width: 1600px) {
+    .area-figura {
+        width: 60%;
+    }
+    
+}
 
