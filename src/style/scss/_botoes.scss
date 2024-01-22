@@ -25,6 +25,14 @@ $borda-botao: #000055;
     }
 }
 
+// Parâmetros para linha
+.ln {
+    position: absolute;
+    display: block;
+    background: $borda-botao;
+    transition: .3s;
+}
+
 
 .btn {
     user-select: none;
@@ -37,8 +45,7 @@ $borda-botao: #000055;
     cursor: pointer;
     font-family: $fonte-botao;
     font-size: 1em;
-    font-weight: 500;
-    letter-spacing: .1rem;
+    letter-spacing: .1em;
     transition: .3 ease all;
 
     &:active {
@@ -51,11 +58,27 @@ $borda-botao: #000055;
     user-select: none;
     display: inline-flex;
     text-decoration: none;
-    color: inherit;
     font-family: $fonte-botao;
+    letter-spacing: .1em;
+    padding: .2em .2em;
+    color: inherit;
     transition: 0.5s ease;
-}
+    overflow: hidden;
 
+    .ln-link {
+        bottom: 0;
+        left: -100%;
+        width: 100%;
+        height: .2em;
+    }
+
+    &:hover
+    {
+        .ln-link { left: 0; }
+    }
+
+
+}
 
 #input-label {
     position: relative;
@@ -63,13 +86,6 @@ $borda-botao: #000055;
     padding: 1rem 2rem;
     overflow: hidden;
     transition: .3s;
-
-    .ln {
-        position: absolute;
-        display: block;
-        background: $borda-botao;
-        transition: .3s;
-    }
 
     #ln1 {
         top: 0;
@@ -178,19 +194,32 @@ $borda-botao: #000055;
 
 
 // RESPONSIVIDADE
-@media (max-width: 375px) {
+@media (min-width: 320px) and (max-width: 500px) {
 
     #botao-tema {
         margin-left: 85vw;
         margin-top: 1vh;
     }
+
+    .link-graficos {
+        background-color: aliceblue;
+        padding: .5em 1em;
+        .ln {display: none;}
+    }
+
 }
 
-@media (max-width: 767px) {
+@media (min-width: 501px) and (max-width: 767px) {
 
     #botao-tema {
         margin-left: 90vw;
         margin-top: 1vh;
+    }
+
+    .link-graficos {
+        background-color: transparent;
+        padding: .5em 1em;
+        .ln {display: inline-flex;}
     }
 }
 
