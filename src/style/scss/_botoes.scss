@@ -1,7 +1,8 @@
 @import './variaveis';
 
-
+$fonte-botao: 'Josefin Sans', sans-serif;
 $borda-botao: #000055;
+
 
 
 .claro {
@@ -24,6 +25,7 @@ $borda-botao: #000055;
     }
 }
 
+
 .btn {
     user-select: none;
     display: inline-flex;
@@ -33,8 +35,10 @@ $borda-botao: #000055;
     position: relative;
     border: none;
     cursor: pointer;
+    font-family: $fonte-botao;
     font-size: 1em;
     font-weight: 500;
+    letter-spacing: .1rem;
     transition: .3 ease all;
 
     &:active {
@@ -43,12 +47,20 @@ $borda-botao: #000055;
 
 }
 
+.link-graficos {
+    user-select: none;
+    display: inline-flex;
+    text-decoration: none;
+    color: inherit;
+    font-family: $fonte-botao;
+    transition: 0.5s ease;
+}
+
+
 #input-label {
-    font-family: 'Josefin Sans', sans-serif;
     position: relative;
     display: inline-block;
     padding: 1rem 2rem;
-    letter-spacing: .1rem;
     overflow: hidden;
     transition: .3s;
 
@@ -56,68 +68,56 @@ $borda-botao: #000055;
         position: absolute;
         display: block;
         background: $borda-botao;
+        transition: .3s;
     }
 
     #ln1 {
         top: 0;
-        left: -100%;
+        left: -95%;
         width: 100%;
-        height: .25rem;
-        background: linear-gradient(90deg, transparent, $borda-botao )
+        height: .2em;
     }
 
     #ln2 {
-        top: -100%;
+        top: 75%;
         right: 0;
-        width: .25rem;
+        width: .2em;
         height: 100%;
-        background: linear-gradient(180deg, transparent, $borda-botao )
     }
 
     #ln3 {
         bottom: 0;
-        right: -100%;
+        right: -95%;
         width: 100%;
-        height: .25rem;
-        background: linear-gradient(270deg, transparent, $borda-botao )
+        height: .2em;
     }
 
     #ln4 {
-        bottom: -100%;
+        bottom: 75%;
         left: 0;
-        width: .25rem;
+        width: .2em;
         height: 100%;
-        background: linear-gradient(0deg, transparent, $borda-botao )
     }
 
     &:hover {
         #ln1 {
-            left: 100%;
-            transition: .3s;
+            left: 0%;
         }
 
         #ln2 {
-            top: 100%;
-            transition: .3s;
-            transition-delay: .25s;
+            top: 0%;
         }
 
         #ln3 {
-            right: 100%;
-            transition: .3s;
-            transition-delay: .5s;
+            right: 0%;
         }
 
         #ln4 {
-            bottom: 100%;
-            transition: .3s;
-            transition-delay: .75s;
+            bottom: 0%;
         }
     }
 
 }
-
-
 
 
 #btn-processar {
@@ -150,15 +150,14 @@ $borda-botao: #000055;
 }
 
 
-
-
-
 #botao-tema {
     position: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: auto;
+    width: 1em;
+    height: 1em;
+    border: 0.1em solid transparent;
     z-index: 1;
 
     .icone-tema {
@@ -178,10 +177,6 @@ $borda-botao: #000055;
 }
 
 
-
-
-
-
 // RESPONSIVIDADE
 @media (max-width: 375px) {
 
@@ -191,15 +186,7 @@ $borda-botao: #000055;
     }
 }
 
-@media (max-width: 425px) {
-
-    #botao-tema {
-        margin-left: 90vw;
-        margin-top: 1vh;
-    }
-}
-
-@media (max-width: 630px) {
+@media (max-width: 767px) {
 
     #botao-tema {
         margin-left: 90vw;
@@ -212,5 +199,25 @@ $borda-botao: #000055;
     #botao-tema {
         margin-left: 94vw;
         margin-top: 2vh;
+    }
+}
+
+@media (min-width: 1500px) {
+
+    #botao-tema {
+        width: 2em;
+        height: 2em;
+        margin-left: 95vw;
+    }
+}
+
+@media (min-width: 1600px) {
+
+    #botao-tema {
+        width: 2.5em;
+        height: 2.5em;
+        margin-left: 95vw;
+        margin-top: 2vh;
+        transform: scale(1.5);
     }
 }
