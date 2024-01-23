@@ -14,6 +14,17 @@ function figura() {
         1: 'fatia-20m'
     }
 
+    // Texto da fatia
+    const textos_fatias = {
+        6: 'Superfície',
+        5: '40 cm',
+        4: '80 cm',
+        3: '120 cm',
+        2: '160 cm',
+        1: '200 cm'
+    }
+
+
     // Capturando a área da figura
     const area_figura = document.getElementById('area-figura')
 
@@ -29,6 +40,13 @@ function figura() {
         fatia.classList.add('fatia')
         fatia.style = `--i:${n}`
         fatia.id = ids[n]
+        fatia.setAttribute('texto', `${textos_fatias[n]}`)
+
+        // Criando texto da fatia
+        const texto_fatia = document.createElement('span')
+        texto_fatia.classList.add('txt-fatia')
+        texto_fatia.innerText = textos_fatias[n]
+        fatia.appendChild(texto_fatia)
 
         // Adicionando a fatia no objeto
         objeto.appendChild(fatia)

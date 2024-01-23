@@ -111,6 +111,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     overflow: hidden;
     border: .1em solid $cor-borda-area;
     background-color: $cor-fundo-area;
@@ -124,15 +125,27 @@
             position: relative;
             width: 15em;
             height: 3.5em;
-            transition: 0.5s;
+            transition: .7s;
             z-index: var(--i);
             animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite;
-            // animation-delay: calc(-1s * var(--i));
             background-color: $cor-fatia;
+
+            .txt-fatia {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: $fonte-botao;
+                font-weight: bolder;
+                letter-spacing: 0.1em;
+                background-color: transparent;
+            }
 
 
             &::before {
-                content: '';
+                content: attr(texto);
                 position: absolute;
                 top: 0;
                 left: -9em;
@@ -140,19 +153,31 @@
                 width: 9em;
                 transform-origin: right;
                 transform: skewY(45deg);
-                transition: 0.5s;
+                transition: .7s;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: $fonte-botao;
+                font-weight: bolder;
+                letter-spacing: 0.1em;
                 background-color: $cor-fatia;
             }
 
             &::after {
-                content: '';
+                content: attr(texto);
                 position: absolute;
                 width: 100%;
                 height: 9em;
                 top: -9em;
                 transform-origin: bottom;
                 transform: skewX(45deg);
-                transition: 0.5s;
+                transition: .7s;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: $fonte-botao;
+                font-weight: bolder;
+                letter-spacing: 0.1em;
                 background-color: $cor-fatia;
             }
 
@@ -254,7 +279,6 @@
 // RESPONSIVIDADE
 @media (min-width: 320px) and (max-width: 500px) {
 
-
 }
 
 @media (max-width: 767px) {
@@ -321,8 +345,8 @@
 
     .area-figura {
         position: absolute;
-        width: 90%;
-        height: 85vh;
+        height: 100vh;
+        overflow: hidden;
         z-index: -1;
     }
 }
@@ -330,16 +354,15 @@
 @media (min-width:768px) {
 
     .area-figura {
-        width: 40%;
-        height: 80vh;
-
+        height: 100vh;
+        z-index: 1;
+        overflow: visible;
     }
 }
 
 @media (min-width: 820px) {
 
     .area-figura {
-        width: 55%;
         height: 85vh;
         margin-top: 2em;
     }
@@ -348,7 +371,6 @@
 @media (min-width: 1024px) {
 
     .area-figura {
-        width: 40em;
         height: 90vh;
         margin-top: 2em;
     }
