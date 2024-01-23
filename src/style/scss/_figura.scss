@@ -1,7 +1,8 @@
+@import './variaveis';
 /*
     DESENHOS DA TELA INCIAL
 */
-$cor-fatia: rgb(65, 65, 65);
+$cor-fatia: #414141;
 $cor-hover-fatia: blueviolet;
 $cor-fundo-area: rgba(255, 255, 255, 0);
 $cor-borda-area: black;
@@ -14,75 +15,93 @@ $cor-16m: #800080;
 $cor-20m: #FF4500;
 
 
-#fatia-superficie:hover {
-    background-color: $cor-superficie;
+#fatia-superficie {
 
-    &::before {
+    &:hover {
         background-color: $cor-superficie;
-    }
 
-    &::after {
-        background-color: $cor-superficie;
+        &::before {
+            background-color: $cor-superficie;
+        }
+
+        &::after {
+            background-color: $cor-superficie;
+        }
     }
 }
 
-#fatia-04m:hover {
-    background-color: $cor-04m;
+#fatia-04m {
 
-    &::before {
+    &:hover {
         background-color: $cor-04m;
-    }
 
-    &::after {
-        background-color: $cor-04m;
+        &::before {
+            background-color: $cor-04m;
+        }
+
+        &::after {
+            background-color: $cor-04m;
+        }
     }
 }
 
-#fatia-08m:hover {
-    background-color: $cor-08m;
+#fatia-08m {
 
-    &::before {
+    &:hover {
         background-color: $cor-08m;
-    }
 
-    &::after {
-        background-color: $cor-08m;
+        &::before {
+            background-color: $cor-08m;
+        }
+
+        &::after {
+            background-color: $cor-08m;
+        }
     }
 }
 
-#fatia-12m:hover {
-    background-color: $cor-12m;
+#fatia-12m {
 
-    &::before {
+    &:hover {
         background-color: $cor-12m;
-    }
 
-    &::after {
-        background-color: $cor-12m;
-    }
-}
+        &::before {
+            background-color: $cor-12m;
+        }
 
-#fatia-16m:hover {
-    background-color: $cor-16m;
-
-    &::before {
-        background-color: $cor-16m;
-    }
-
-    &::after {
-        background-color: $cor-16m;
+        &::after {
+            background-color: $cor-12m;
+        }
     }
 }
 
-#fatia-20m:hover {
-    background-color: $cor-20m;
+#fatia-16m {
 
-    &::before {
-        background-color: $cor-20m;
+    &:hover {
+        background-color: $cor-16m;
+
+        &::before {
+            background-color: $cor-16m;
+        }
+
+        &::after {
+            background-color: $cor-16m;
+        }
     }
+}
 
-    &::after {
+#fatia-20m {
+
+    &:hover {
         background-color: $cor-20m;
+
+        &::before {
+            background-color: $cor-20m;
+        }
+
+        &::after {
+            background-color: $cor-20m;
+        }
     }
 }
 
@@ -108,7 +127,8 @@ $cor-20m: #FF4500;
             z-index: var(--i);
             animation: ladolado 5s ease-in-out infinite;
             animation-delay: calc(-1s * var(--i));
-            // background-color: $cor-fatia;
+            background-color: $cor-fatia;
+
 
             &::before {
                 content: '';
@@ -120,7 +140,7 @@ $cor-20m: #FF4500;
                 transform-origin: right;
                 transform: skewY(45deg);
                 transition: 0.5s;
-                // background-color: $cor-fatia;
+                background-color: $cor-fatia;
             }
 
             &::after {
@@ -132,7 +152,7 @@ $cor-20m: #FF4500;
                 transform-origin: bottom;
                 transform: skewX(45deg);
                 transition: 0.5s;
-                // background-color: $cor-fatia;
+                background-color: $cor-fatia;
             }
 
             &:hover {
@@ -167,7 +187,65 @@ $cor-20m: #FF4500;
     }
 }
 
+@keyframes superficie {
+    0% {
+        background-color: $cor-superficie;
+    }
 
+    99% {
+        background-color: $cor-fatia;
+    }
+}
+
+@keyframes sensor04 {
+    0% {
+        background-color: $cor-04m;
+    }
+
+    99% {
+        background-color: $cor-fatia;
+    }
+}
+
+@keyframes sensor08 {
+    0% {
+        background-color: $cor-08m;
+    }
+
+    99% {
+        background-color: $cor-fatia;
+    }
+}
+
+@keyframes sensor12 {
+    0% {
+        background-color: $cor-12m;
+    }
+
+    99% {
+        background-color: $cor-fatia;
+    }
+}
+
+@keyframes sensor16 {
+    0% {
+        background-color: $cor-16m;
+    }
+
+    99% {
+        background-color: $cor-fatia;
+    }
+}
+
+@keyframes sensor20 {
+    0% {
+        background-color: $cor-20m;
+    }
+
+    99% {
+        background-color: $cor-fatia;
+    }
+}
 
 
 
