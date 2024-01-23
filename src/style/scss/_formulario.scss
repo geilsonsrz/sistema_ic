@@ -6,7 +6,8 @@
     align-items: flex-start;
     justify-content: space-around;
     flex-direction: column;
-    background-color: $conteiner;
+    background-color: transparent;
+    margin-left: 10em;
 
     .texto-subtitulo {
         display: flex;

@@ -13,9 +13,6 @@ import mediaSensores from "./f_mediaSensores.js"
 // Gerar gráficos
 function graficos(dados) {
 
-    // Efeito do botão direcional para área do gráfico
-    document.getElementById('link-graficos').classList.add('aparecer')
-
     // Garantindo que não será criado multiplos gráficos por precionar o botão processar várias vezes
     // Limpando elementos filhos caso existam
     document.getElementById('resultados').innerHTML = ''
@@ -58,7 +55,7 @@ function graficos(dados) {
             .attr('class', 'conteiner-grafico')
             .attr('id', id_comparativo)
             .text(`${id_comparativo}`)
-        
+
         //Captura dos dados dos sensores
         const dados_sensores = comparativo(dados, id_sensor)
 
@@ -71,7 +68,7 @@ function graficos(dados) {
             .attr('class', 'conteiner-grafico')
             .attr('id', id_media_sensor)
             .text(id_media_sensor)
-        
+
         // Tempetaruras médias em formato de dicionário
         const media_sensores = mediaSensores(dados_sensores)
 
@@ -93,7 +90,7 @@ function graficos(dados) {
 
 
 
-`
+    `
     FALTA CORRIGIR A FUNÇÃO DE AJUSTE
     - ERRO NO CALCULO DA MATRIZ
 
@@ -109,7 +106,9 @@ function graficos(dados) {
     // Criação do gráfico do ajuste
     graficar(dados['superficie'], 'id-ajuste')
 `
-    
+
+    // Efeito do botão direcional para área do gráfico
+    document.getElementById('link-graficos').classList.add('aparecer')
 
 }
 

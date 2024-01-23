@@ -113,7 +113,8 @@
     align-items: center;
     width: 100%;
     overflow: hidden;
-    border: .1em solid $cor-borda-area;
+    border: none;
+    // border: .1em solid $cor-borda-area;
     background-color: $cor-fundo-area;
 
     .figura {
