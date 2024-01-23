@@ -3,6 +3,8 @@
 @import './scss/formulario';
 @import './scss/navbar';
 @import './scss/tela';
+@import './scss/temaClaro';
+@import './scss/temaEscuro';
 @import './scss/variaveis';
 
 *
@@ -15,12 +17,6 @@
 body
 {
     transition: ease-in-out 0.2s;    
-}
-
-.escuro
-{
-    color: $cor-secundaria;
-    background-color: $fundo-secundario;
 }
 
 .oculto
