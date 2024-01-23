@@ -2,20 +2,11 @@
 /*
     DESENHOS DA TELA INCIAL
 */
-$cor-fatia: #414141;
-$cor-hover-fatia: blueviolet;
-$cor-fundo-area: rgba(255, 255, 255, 0);
-$cor-borda-area: black;
-
-$cor-superficie: #228B22;
-$cor-04m: #8B4513;
-$cor-08m: #6495ED;
-$cor-12m: #FFD700;
-$cor-16m: #800080;
-$cor-20m: #FF4500;
 
 
 #fatia-superficie {
+
+    animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite;
 
     &:hover {
         background-color: $cor-superficie;
@@ -32,6 +23,8 @@ $cor-20m: #FF4500;
 
 #fatia-04m {
 
+    animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite;
+
     &:hover {
         background-color: $cor-04m;
 
@@ -46,6 +39,8 @@ $cor-20m: #FF4500;
 }
 
 #fatia-08m {
+
+    animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite;
 
     &:hover {
         background-color: $cor-08m;
@@ -62,6 +57,8 @@ $cor-20m: #FF4500;
 
 #fatia-12m {
 
+    animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite;
+
     &:hover {
         background-color: $cor-12m;
 
@@ -77,6 +74,8 @@ $cor-20m: #FF4500;
 
 #fatia-16m {
 
+    animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite;
+
     &:hover {
         background-color: $cor-16m;
 
@@ -91,6 +90,8 @@ $cor-20m: #FF4500;
 }
 
 #fatia-20m {
+
+    animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite;
 
     &:hover {
         background-color: $cor-20m;
@@ -125,8 +126,8 @@ $cor-20m: #FF4500;
             height: 3.5em;
             transition: 0.5s;
             z-index: var(--i);
-            animation: ladolado 5s ease-in-out infinite;
-            animation-delay: calc(-1s * var(--i));
+            animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite;
+            // animation-delay: calc(-1s * var(--i));
             background-color: $cor-fatia;
 
 
@@ -253,18 +254,70 @@ $cor-20m: #FF4500;
 // RESPONSIVIDADE
 @media (min-width: 320px) and (max-width: 500px) {
 
-    .fatia {
-        animation: none;
-        animation-delay: none;
-    }
-
-
 
 }
 
-
-
 @media (max-width: 767px) {
+
+    #fatia-superficie {
+        animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite, superficie 7s ease infinite;
+        &::before {
+            animation: superficie 7s ease infinite;
+        }
+        &::after {
+            animation: superficie 7s ease infinite;
+        }
+    }
+    
+    #fatia-04m {
+        animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite, sensor04 7s ease 1.2s infinite;
+        &::before {
+            animation: sensor04 7s ease 1.2s infinite;
+        }
+        &::after {
+            animation: sensor04 7s ease 1.2s infinite;
+        }
+    }
+    
+    #fatia-08m {
+        animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite, sensor08 7s ease 2.4s infinite;
+        &::before {
+            animation: sensor08 7s ease 2.4s infinite;
+        }
+        &::after {
+            animation: sensor08 7s ease 2.4s infinite;
+        }
+    }
+    
+    #fatia-12m {
+        animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite, sensor12 7s ease 3.6s infinite;
+        &::before {
+            animation: sensor12 7s ease 3.6s infinite;
+        }
+        &::after {
+            animation: sensor12 7s ease 3.6s infinite;
+        }
+    }
+    
+    #fatia-16m {
+        animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite, sensor16 7s ease 4.8s infinite;
+        &::before {
+            animation: sensor16 7s ease 4.8s infinite;
+        }
+        &::after {
+            animation: sensor16 7s ease 4.8s infinite;
+        }
+    }
+    
+    #fatia-20m {
+        animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite, sensor20 7s ease 6s infinite;
+        &::before {
+            animation: sensor20 7s ease 6s infinite;
+        }
+        &::after {
+            animation: sensor20 7s ease 6s infinite;
+        }
+    }
 
     .area-figura {
         position: absolute;

@@ -36,13 +36,17 @@
 
 @media (max-width: 500px) {
     .formulario {
-        display: none;
+        display: flex;
         align-items: flex-start;
         justify-content: space-around;
         border-radius: 1em;
         width: 90%;
         height: 15em;
         padding: 0.5em;
+        background-color: transparent;
+        border: 0.1em solid #ffffff55;
+        box-shadow: 0 0 1em #00000055;
+        backdrop-filter: blur(1em);
 
         .area-botoes {
             display: flex;

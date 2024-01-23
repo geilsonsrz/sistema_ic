@@ -198,6 +198,9 @@
 /*
     DESENHOS DA TELA INCIAL
 */
+#fatia-superficie {
+  animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite;
+}
 #fatia-superficie:hover {
   background-color: #228B22;
 }
@@ -208,6 +211,9 @@
   background-color: #228B22;
 }
 
+#fatia-04m {
+  animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite;
+}
 #fatia-04m:hover {
   background-color: #8B4513;
 }
@@ -218,6 +224,9 @@
   background-color: #8B4513;
 }
 
+#fatia-08m {
+  animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite;
+}
 #fatia-08m:hover {
   background-color: #6495ED;
 }
@@ -228,6 +237,9 @@
   background-color: #6495ED;
 }
 
+#fatia-12m {
+  animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite;
+}
 #fatia-12m:hover {
   background-color: #FFD700;
 }
@@ -238,6 +250,9 @@
   background-color: #FFD700;
 }
 
+#fatia-16m {
+  animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite;
+}
 #fatia-16m:hover {
   background-color: #800080;
 }
@@ -248,6 +263,9 @@
   background-color: #800080;
 }
 
+#fatia-20m {
+  animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite;
+}
 #fatia-20m:hover {
   background-color: #FF4500;
 }
@@ -277,8 +295,8 @@
   height: 3.5em;
   transition: 0.5s;
   z-index: var(--i);
-  animation: ladolado 5s ease-in-out infinite;
-  animation-delay: calc(-1s * var(--i));
+  animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite;
+  background-color: #414141;
 }
 .area-figura .figura .fatia::before {
   content: "";
@@ -290,6 +308,7 @@
   transform-origin: right;
   transform: skewY(45deg);
   transition: 0.5s;
+  background-color: #414141;
 }
 .area-figura .figura .fatia::after {
   content: "";
@@ -300,6 +319,7 @@
   transform-origin: bottom;
   transform: skewX(45deg);
   transition: 0.5s;
+  background-color: #414141;
 }
 .area-figura .figura .fatia:hover {
   transition: 0s;
@@ -322,13 +342,109 @@
     transform: translateX(-5em);
   }
 }
-@media (min-width: 320px) and (max-width: 500px) {
-  .fatia {
-    animation: none;
-    animation-delay: none;
+@keyframes superficie {
+  0% {
+    background-color: #228B22;
+  }
+  99% {
+    background-color: #414141;
+  }
+}
+@keyframes sensor04 {
+  0% {
+    background-color: #8B4513;
+  }
+  99% {
+    background-color: #414141;
+  }
+}
+@keyframes sensor08 {
+  0% {
+    background-color: #6495ED;
+  }
+  99% {
+    background-color: #414141;
+  }
+}
+@keyframes sensor12 {
+  0% {
+    background-color: #FFD700;
+  }
+  99% {
+    background-color: #414141;
+  }
+}
+@keyframes sensor16 {
+  0% {
+    background-color: #800080;
+  }
+  99% {
+    background-color: #414141;
+  }
+}
+@keyframes sensor20 {
+  0% {
+    background-color: #FF4500;
+  }
+  99% {
+    background-color: #414141;
   }
 }
 @media (max-width: 767px) {
+  #fatia-superficie {
+    animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite, superficie 7s ease infinite;
+  }
+  #fatia-superficie::before {
+    animation: superficie 7s ease infinite;
+  }
+  #fatia-superficie::after {
+    animation: superficie 7s ease infinite;
+  }
+  #fatia-04m {
+    animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite, sensor04 7s ease 1.2s infinite;
+  }
+  #fatia-04m::before {
+    animation: sensor04 7s ease 1.2s infinite;
+  }
+  #fatia-04m::after {
+    animation: sensor04 7s ease 1.2s infinite;
+  }
+  #fatia-08m {
+    animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite, sensor08 7s ease 2.4s infinite;
+  }
+  #fatia-08m::before {
+    animation: sensor08 7s ease 2.4s infinite;
+  }
+  #fatia-08m::after {
+    animation: sensor08 7s ease 2.4s infinite;
+  }
+  #fatia-12m {
+    animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite, sensor12 7s ease 3.6s infinite;
+  }
+  #fatia-12m::before {
+    animation: sensor12 7s ease 3.6s infinite;
+  }
+  #fatia-12m::after {
+    animation: sensor12 7s ease 3.6s infinite;
+  }
+  #fatia-16m {
+    animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite, sensor16 7s ease 4.8s infinite;
+  }
+  #fatia-16m::before {
+    animation: sensor16 7s ease 4.8s infinite;
+  }
+  #fatia-16m::after {
+    animation: sensor16 7s ease 4.8s infinite;
+  }
+  #fatia-20m {
+    animation: ladolado 5s ease-in-out calc(-1s * var(--i)) infinite, sensor20 7s ease 6s infinite;
+  }
+  #fatia-20m::before {
+    animation: sensor20 7s ease 6s infinite;
+  }
+  #fatia-20m::after {
+    animation: sensor20 7s ease 6s infinite;
+  }
   .area-figura {
     position: absolute;
     width: 90%;
@@ -395,13 +511,17 @@
 
 @media (max-width: 500px) {
   .formulario {
-    display: none;
+    display: flex;
     align-items: flex-start;
     justify-content: space-around;
     border-radius: 1em;
     width: 90%;
     height: 15em;
     padding: 0.5em;
+    background-color: transparent;
+    border: 0.1em solid rgba(255, 255, 255, 0.3333333333);
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.3333333333);
+    backdrop-filter: blur(1em);
   }
   .formulario .area-botoes {
     display: flex;
@@ -491,11 +611,6 @@
 
 body {
   transition: ease-in-out 0.2s;
-}
-
-.claro {
-  color: #000000;
-  background-color: #ADD8E6;
 }
 
 .escuro {
