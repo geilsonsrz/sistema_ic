@@ -134,7 +134,7 @@
   width: 1em;
   height: 1em;
   border: 0.1em solid transparent;
-  z-index: 1;
+  z-index: 10;
 }
 #botao-tema .icone-tema {
   position: absolute;
@@ -312,7 +312,7 @@
   background-color: transparent;
 }
 .area-figura .figura .fatia::before {
-  content: attr(texto);
+  content: attr(data-sensor);
   position: absolute;
   top: 0;
   left: -9em;
@@ -326,11 +326,12 @@
   justify-content: center;
   font-family: "Josefin Sans", sans-serif;
   font-weight: bolder;
+  text-transform: capitalize;
   letter-spacing: 0.1em;
   background-color: #414141;
 }
 .area-figura .figura .fatia::after {
-  content: attr(texto);
+  content: attr(data-texto);
   position: absolute;
   width: 100%;
   height: 9em;

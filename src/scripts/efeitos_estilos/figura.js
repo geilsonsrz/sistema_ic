@@ -40,12 +40,17 @@ function figura() {
         fatia.classList.add('fatia')
         fatia.style = `--i:${n}`
         fatia.id = ids[n]
-        fatia.setAttribute('texto', `${textos_fatias[n]}`)
+        fatia.setAttribute('data-texto', `${textos_fatias[n]}`)
 
         // Criando texto da fatia
         const texto_fatia = document.createElement('span')
         texto_fatia.classList.add('txt-fatia')
         texto_fatia.innerText = textos_fatias[n]
+        if (n !== 6) {
+            fatia.setAttribute('data-sensor', `sensor ${n}`)
+        } else {
+            fatia.setAttribute('data-sensor', `superfície`)
+        }
         fatia.appendChild(texto_fatia)
 
         // Adicionando a fatia no objeto

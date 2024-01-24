@@ -146,7 +146,7 @@
 
 
             &::before {
-                content: attr(texto);
+                content: attr(data-sensor);
                 position: absolute;
                 top: 0;
                 left: -9em;
@@ -160,12 +160,13 @@
                 justify-content: center;
                 font-family: $fonte-botao;
                 font-weight: bolder;
+                text-transform: capitalize;
                 letter-spacing: 0.1em;
                 background-color: $cor-fatia;
             }
 
             &::after {
-                content: attr(texto);
+                content: attr(data-texto);
                 position: absolute;
                 width: 100%;
                 height: 9em;
