@@ -7,7 +7,7 @@
     justify-content: space-around;
     flex-direction: column;
     background-color: transparent;
-    margin-left: 10em;
+    margin-left: 0em;
 
     .texto-subtitulo {
         display: flex;
@@ -116,6 +116,7 @@
         width: 45em;
         padding: 0em 1em;
         height: 20em;
+        margin-left: 10%;
         z-index: 1;
     }
 
@@ -130,6 +131,15 @@
         width: 30em;
         padding: 0em 1em;
         height: 25em;
+    }
+}
+
+@media (min-width: 1920px) {
+    .formulario {
+        width: 30em;
+        padding: 0em 1em;
+        height: 25em;
+        transform: scale(1.2);
     }
 }
 
