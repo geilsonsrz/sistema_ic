@@ -11,6 +11,14 @@ import horarios from "./f_horarios.js";
 
 function graficarCaixa(dados, id_area) {
 
+    // Título gráfico
+    const tituloGrafico = () => {
+
+        console.log(id_area)
+
+    }
+
+
     // Converter momentos em strings para horas em float
     const momentos = horarios(dados)
 
@@ -19,8 +27,8 @@ function graficarCaixa(dados, id_area) {
 
     // Configurações do gráfico
     let margin = { top: 20, right: 20, bottom: 30, left: 50 };
-    let width = 400 - margin.left - margin.right;
-    let height = 300 - margin.top - margin.bottom;
+    let width = 600 - margin.left - margin.right;
+    let height = 400 - margin.top - margin.bottom;
 
     // Criação do SVG
     let svg = d3.select(`#${id_area}`).append('svg')
@@ -28,6 +36,14 @@ function graficarCaixa(dados, id_area) {
         .attr('height', height + margin.top + margin.bottom)
         .append("g")
         .attr('transform', `translate(${margin.left}, ${margin.top})`)
+
+    // Títulos
+    svg.append("text")
+        .attr("x", (width / 2))
+        .attr("y", margin.top)
+        .attr("text-anchor", "middle")
+        .style("font-size", "20px")
+        .text(`${tituloGrafico()}`);
 
     // Início do clico de montagem das linhas dos dados
     // Captura do tamanho da linha para saber quantidades de sensores
@@ -50,7 +66,7 @@ function graficarCaixa(dados, id_area) {
 
                 // Captura da temperatura do sensor
                 temperaturas.push(dados[i][n])
-                
+
             }
             // Agregando as temperatura de todo o gráfico
             todas_temperaturas = todas_temperaturas.concat(temperaturas)
@@ -77,6 +93,21 @@ function graficarCaixa(dados, id_area) {
                 .attr('stroke', `${cores[tamanho_linha][n]}`)
                 .attr('stroke-width', 2);
 
+            // Adicionando legenda
+            let legenda = svg.append("g")
+                .attr("class", "legenda")
+                .attr("transform", `translate(${5},${margin.top + n * 20})`);
+
+            legenda.append("text")
+                .attr("x", 25)
+                .attr("y", 5)
+                .style("font-size", "12px")
+                .text(`Sensor ${n + 1}`);
+
+            legenda.append("rect")
+                .attr("width", 20)
+                .attr("height", 2)
+                .attr("fill", `${cores[tamanho_linha][n]}`);
         }
     }
 
@@ -88,7 +119,7 @@ function graficarCaixa(dados, id_area) {
         .domain(legenda_x)
         .range([0, width])
         .nice()
-    
+
     // Definindo escala Y
     let temp_minima = math.min(todas_temperaturas)
     let temp_maxima = math.max(todas_temperaturas)
@@ -113,7 +144,7 @@ function graficarCaixa(dados, id_area) {
     svg.append("text")
         .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + 20) + ")")
         .style("text-anchor", "middle")
-        .text("Momentos");
+        .text("Horas");
 
     // Adiciona título ao eixo y
     svg.append("text")
@@ -122,7 +153,7 @@ function graficarCaixa(dados, id_area) {
         .attr("x", 0 - (height / 2))
         .attr("dy", "1em")
         .style("text-anchor", "middle")
-        .text("Temperaturas");
+        .text("Temperaturas (°C)");
 
 }
 

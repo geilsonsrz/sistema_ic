@@ -7,11 +7,26 @@
 
 #resultados {
     flex-direction: column;
+    padding-top: 2em;
     gap: 3em;
+    background-color: #550000;
 
-    .conteiner-grafico {
-        background-color: #aa0000;
-    }
 }
 
+.conteiner-grafico {
+    display: flex;
+
+    width: 800px;
+    height: 600px;
+    border: .2em solid black;
+
+    background-color: #005500;
+
+    svg {
+        width: 600px;
+        height: 420px;
+        background-color: aliceblue;
+        transform: scale(1);
+    }
+}
 

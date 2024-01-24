@@ -13,34 +13,75 @@
     ARGUMENTO 2:
 
         ID da divisão ('div') reservado para o gráfico.
+    
+    ARGUMENTO 3:
+
+        Controle de caixa ausente.
 
 `
 
 
-function graficarMomentosDiferentes(dados, id_area) {
-    `
-        OBSERVAÇÃO:
-            FALTA ARRUMAR AS LEGENDAS!!!
-    `
+function graficarMomentosDiferentes(dados, id_area, caixas_ausentes = []) {
+
+    // Título gráfico
+    const tituloGrafico = () => {
+
+        // Separação do ID em partes
+        let partes = id_area.split('-')
+
+        // Captura do número do sensor
+        let num_sensor = partes[2].match(/\d+/)
+
+        // Dia inicial
+        let dia_inicial = sessionStorage.getItem('dia_inicial')
+
+        // Retorno do título
+        return `COMPARATIVO PROFUNDIDADE ${(2 - num_sensor * 0.4).toFixed(1)}m | ${dia_inicial}`
+    }
+
     // Captura de dados para a lenda
     let todos_momentos = []
     let todas_temperaturas = []
 
     // Configurações do gráfico
     let margin = { top: 20, right: 20, bottom: 30, left: 50 };
-    let width = 400 - margin.left - margin.right;
-    let height = 300 - margin.top - margin.bottom;
+    let width = 600 - margin.left - margin.right;
+    let height = 400 - margin.top - margin.bottom;
 
     // Criação do SVG
     let svg = d3.select(`#${id_area}`).append('svg')
         .attr('width', width + margin.left + margin.right)
-        .attr('height', height + margin.top + margin.bottom)
+        .attr('height', height + (margin.top+10) + margin.bottom)
         .append("g")
         .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
+    // Títulos
+    svg.append("text")
+        .attr("x", (width / 2))
+        .attr("y", 0)
+        .attr("text-anchor", "middle")
+        .style("font-size", "20px")
+        .text(`${tituloGrafico()}`);
 
     // Iteração dos sensores
     for (let n = 0; n < dados.length; n++) {
+
+        let numero_caixa = n + 1
+
+        // Verificação número da caixa
+        if (numero_caixa in caixas_ausentes) {
+
+            let teste = 3 - numero_caixa
+            const verificador = {
+                0: () => { numero_caixa = 3 },
+                1: () => { numero_caixa = 2 },
+                2: () => { numero_caixa = 1 },
+            }
+
+            verificador(teste)
+        }
+
+
 
         // Identificação das temperaturas e momentos
         const temperaturas = dados[n][0]
@@ -71,6 +112,22 @@ function graficarMomentosDiferentes(dados, id_area) {
             .attr('fill', 'none')
             .attr('stroke', `${cores[n]}`)
             .attr('stroke-width', 2);
+
+        // Legenda para cada linha
+        let legenda = svg.append("g")
+            .attr("class", "legenda")
+            .attr("transform", `translate(${5},${margin.top + n * 20})`);
+
+        legenda.append("text")
+            .attr("x", 25)
+            .attr("y", 3)
+            .style("font-size", "12px")
+            .text(`Caixa ${numero_caixa}`);
+
+        legenda.append("rect")
+            .attr("width", 20)
+            .attr("height", 2)
+            .attr("fill", `${cores[n]}`);
     }
 
     // Definindo escala X
@@ -107,7 +164,7 @@ function graficarMomentosDiferentes(dados, id_area) {
     svg.append("text")
         .attr("transform", "translate(" + (width / 2) + " ," + (height + margin.top + 20) + ")")
         .style("text-anchor", "middle")
-        .text("Momentos");
+        .text("Horas");
 
     // Adiciona título ao eixo y
     svg.append("text")

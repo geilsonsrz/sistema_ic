@@ -2,6 +2,7 @@
     Função para graficar os dados das caixas
 `
 import ajusteNDias from "./f_ajusteNDias.js"
+import caixasAusentes from "./f_caixasAusentes.js"
 import comparativo from "./f_comparativos.js"
 import graficarCaixa from "./f_graficarCaixa.js"
 import graficarMomentosDiferentes from "./f_graficarMomentosDiferentes.js"
@@ -12,6 +13,9 @@ import mediaSensores from "./f_mediaSensores.js"
 
 // Gerar gráficos
 function graficos(dados) {
+
+    // Verificando ausência de caixas
+    const caixas_ausentes = caixasAusentes(dados)
 
     // Garantindo que não será criado multiplos gráficos por precionar o botão processar várias vezes
     // Limpando elementos filhos caso existam
@@ -60,7 +64,7 @@ function graficos(dados) {
         const dados_sensores = comparativo(dados, id_sensor)
 
         // Graficando comparativo
-        graficarMomentosDiferentes(dados_sensores, id_comparativo)
+        graficarMomentosDiferentes(dados_sensores, id_comparativo, caixas_ausentes)
 
         // Criação da área do gráfico da temperatura média dos sensores
         const id_media_sensor = `media-sensor${id_sensor}`

@@ -29,7 +29,15 @@ function estruturacao(dados_id){
                 dados_id[referencias_id[`caixa_${n}_contador`]][i][0],
                 dados_id[referencias_id[`caixa_${n}_sensor_1`]][i][1]
             ]
-    
+            
+            if (i===0) {
+                let data = (dados_id[referencias_id[`caixa_${n}_sensor_1`]][i][1]).split(' ')[0].split('-')
+
+                let dia_inicial = `${data[2]}-${data[1]}-${data[0]}`
+                
+                sessionStorage.setItem('dia_inicial', dia_inicial)
+            }
+
             // Agregando a linha na caixa
             caixa.push(linhas_caixa)
     
