@@ -633,14 +633,6 @@
     transform: scale(1.2);
   }
 }
-#resultados {
-  flex-direction: column;
-  gap: 3em;
-}
-#resultados .conteiner-grafico {
-  background-color: #aa0000;
-}
-
 .tela {
   max-width: 100vw;
   overflow: hidden;

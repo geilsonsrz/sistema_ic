@@ -1,0 +1,17 @@
+//
+//  TELA DOS RESULTADOS
+//
+
+@import './variaveis';
+
+
+#resultados {
+    flex-direction: column;
+    gap: 3em;
+
+    .conteiner-grafico {
+        background-color: #aa0000;
+    }
+}
+
+
