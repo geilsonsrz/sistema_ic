@@ -40,11 +40,13 @@ function graficos(dados) {
         area_resultados.append('div')
             .attr('class', 'conteiner-grafico')
             .attr('id', id_area)
-            .text(`${chave}`)
 
-        // Baixar gráfico
-        let elemento_svg = graficarCaixa(dados[chave], id_area, chave)
-        baixarGrafico(elemento_svg, id_area)
+        // Graficando
+        graficarCaixa(dados[chave], id_area, chave)
+
+        // Adicionando botão para download
+        baixarGrafico(id_area)
+
     }
 
 
@@ -60,7 +62,6 @@ function graficos(dados) {
         area_resultados.append('div')
             .attr('class', 'conteiner-grafico')
             .attr('id', id_comparativo)
-            .text(`${id_comparativo}`)
 
         //Captura dos dados dos sensores
         const dados_sensores = comparativo(dados, id_sensor)
@@ -68,12 +69,15 @@ function graficos(dados) {
         // Graficando comparativo
         graficarMomentosDiferentes(dados_sensores, id_comparativo, caixas_ausentes)
 
+        // Adicionando botão para download
+        baixarGrafico(id_comparativo)
+
+
         // Criação da área do gráfico da temperatura média dos sensores
         const id_media_sensor = `media-sensor${id_sensor}`
         area_resultados.append('div')
             .attr('class', 'conteiner-grafico')
             .attr('id', id_media_sensor)
-            .text(id_media_sensor)
 
         // Tempetaruras médias em formato de dicionário
         const media_sensores = mediaSensores(dados_sensores)
@@ -91,6 +95,8 @@ function graficos(dados) {
         // Graficando as temperaturas média dos sensores
         graficar(temperaturas_media, horas, id_media_sensor)
 
+        // Adicionando botão para download
+        baixarGrafico(id_media_sensor)
 
     }
 
