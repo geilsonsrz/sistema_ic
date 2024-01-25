@@ -18,6 +18,10 @@
 
         Controle de caixa ausente.
 
+    RETORNA:
+
+        Retorna o SVG para download
+
 `
 
 
@@ -36,7 +40,7 @@ function graficarMomentosDiferentes(dados, id_area, caixas_ausentes = []) {
         let dia_inicial = sessionStorage.getItem('dia_inicial')
 
         // Retorno do título
-        return `COMPARATIVO PROFUNDIDADE ${(2 - num_sensor * 0.4).toFixed(1)}m | ${dia_inicial}`
+        return `Comparativo profundidade ${(2 - num_sensor * 0.4).toFixed(1)}m | ${dia_inicial}`
     }
 
     // Captura de dados para a lenda
@@ -174,6 +178,9 @@ function graficarMomentosDiferentes(dados, id_area, caixas_ausentes = []) {
         .attr("dy", "1em")
         .style("text-anchor", "middle")
         .text("Temperaturas")
+
+    // Retorno do SVG pra download
+    return svg
 }
 
 // Definição das cores

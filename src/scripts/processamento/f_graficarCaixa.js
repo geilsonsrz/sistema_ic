@@ -9,13 +9,19 @@ import horarios from "./f_horarios.js";
 
 
 
-function graficarCaixa(dados, id_area) {
 
-    // Título gráfico
-    const tituloGrafico = () => {
+function graficarCaixa(dados, id_area, chave) {
 
-        console.log(id_area)
+    // Legenda
+    const capturarLegenda = (chave, n) => {
 
+        let legenda
+
+        if (chave === 'umidade') { legenda = 'Umidade' }
+        else if (chave === 'superficie') { legenda ='Superfície' }
+        else { legenda = `${(2-n*0.4).toFixed(1)}m` }
+
+        return legenda
     }
 
 
@@ -37,13 +43,15 @@ function graficarCaixa(dados, id_area) {
         .append("g")
         .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
+    let dia_inicial = sessionStorage.getItem('dia_inicial')
+
     // Títulos
     svg.append("text")
         .attr("x", (width / 2))
-        .attr("y", margin.top)
+        .attr("y", 0)
         .attr("text-anchor", "middle")
         .style("font-size", "20px")
-        .text(`${tituloGrafico()}`);
+        .text(`Gráfico ${chave} | ${dia_inicial}`);
 
     // Início do clico de montagem das linhas dos dados
     // Captura do tamanho da linha para saber quantidades de sensores
@@ -102,7 +110,7 @@ function graficarCaixa(dados, id_area) {
                 .attr("x", 25)
                 .attr("y", 5)
                 .style("font-size", "12px")
-                .text(`Sensor ${n + 1}`);
+                .text(capturarLegenda(chave, n));
 
             legenda.append("rect")
                 .attr("width", 20)
@@ -154,6 +162,9 @@ function graficarCaixa(dados, id_area) {
         .attr("dy", "1em")
         .style("text-anchor", "middle")
         .text("Temperaturas (°C)");
+
+    // Retorno para download
+    return svg
 
 }
 

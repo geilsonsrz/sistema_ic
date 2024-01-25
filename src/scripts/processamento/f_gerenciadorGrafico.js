@@ -4,6 +4,7 @@
 import ajusteNDias from "./f_ajusteNDias.js"
 import caixasAusentes from "./f_caixasAusentes.js"
 import comparativo from "./f_comparativos.js"
+import baixarGrafico from "./f_downloadSVG.js"
 import graficarCaixa from "./f_graficarCaixa.js"
 import graficarMomentosDiferentes from "./f_graficarMomentosDiferentes.js"
 import graficar from "./f_graficarSimples.js"
@@ -41,8 +42,9 @@ function graficos(dados) {
             .attr('id', id_area)
             .text(`${chave}`)
 
-        graficarCaixa(dados[chave], id_area)
-
+        // Baixar gráfico
+        let elemento_svg = graficarCaixa(dados[chave], id_area, chave)
+        baixarGrafico(elemento_svg, id_area)
     }
 
 
