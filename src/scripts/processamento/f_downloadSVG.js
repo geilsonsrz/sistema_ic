@@ -43,16 +43,17 @@ function baixarGrafico(id_area) {
             canvas.height = svg.height.baseVal.value;
             const ctx = canvas.getContext('2d');
             ctx.drawImage(svg_img, 0, 0);
-            const dataURL = canvas.toDataURL('image/png');
+            const data_url = canvas.toDataURL('image/png');
 
-            // Agora você pode usar dataURL como necessário
-            console.log(dataURL);
+            // Download do gráfico
+            botao_download.href = data_url
+            botao_download.download = `${id_area}.png`
+            
         };
-
+        
         svg_img.src = url;
-
     });
-
+    
     // Adicionando o botão na área
     area.appendChild(botao_download)
 
