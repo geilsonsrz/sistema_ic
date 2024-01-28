@@ -1,6 +1,14 @@
 `
     CRIAÇÃO DO BOTÃO DE DOWNLOAD
+
+
+    CORRIGIR:
+
+        Tá cortando a parte de baixo do gráfico
+
+
 `
+
 
 function baixarGrafico(id_area) {
 
@@ -15,19 +23,31 @@ function baixarGrafico(id_area) {
     // Função para download
     botao_download.addEventListener('click', () => {
 
-        // Captura dos dados do SVG
-        const svg_txt = document.getElementById(id_area).querySelector('svg').outerHTML;
+        // Capturando o SVG da área
+        let svg
+        for (let filho in area.children) {
+            if (area.children[filho].tagName === 'svg') { svg = area.children[filho] }
+        }
 
-        // Converte string para SVG
-        const svg = new SVG(svg_txt);
+        const svg_img = new Image();
+        const svg_txt = new XMLSerializer().serializeToString(svg);
+        const blob = new Blob([svg_txt], { type: 'image/svg+xml' });
+        const url = URL.createObjectURL(blob);
 
-        // Converte o SVG em uma imagem PNG
-        const png_dados_url = svg.toDataURL('image/png');
+        svg_img.onload = function () {
+            const canvas = document.createElement('canvas');
+            canvas.width = svg.width.baseVal.value;
+            canvas.height = svg.height.baseVal.value;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(svg_img, 0, 0);
+            const dataURL = canvas.toDataURL('image/png');
 
+            // Agora você pode usar dataURL como necessário
+            console.log(dataURL);
+        };
 
-        // Cria um link para baixar a imagem PNG
-        botao_download.href = png_dados_url;
-        botao_download.download = `${id_area}.png`;
+        svg_img.src = url;
+
     });
 
     // Adicionando o botão na área
