@@ -34,6 +34,9 @@ function baixarGrafico(id_area) {
         const blob = new Blob([svg_txt], { type: 'image/svg+xml' });
         const url = URL.createObjectURL(blob);
 
+        `
+            IMAGEM DO GRÁFICO TÁ SENDO CORTADA NA PARTE DA LEGENDA INFERIOR
+        `
         svg_img.onload = function () {
             const canvas = document.createElement('canvas');
             canvas.width = svg.width.baseVal.value;
