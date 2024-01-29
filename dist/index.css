@@ -634,17 +634,18 @@
   }
 }
 #resultados {
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   padding-top: 2em;
   gap: 3em;
-  background-color: transparent;
+  background-color: #550000;
 }
 
 .conteiner-grafico {
   display: flex;
   flex-direction: column;
-  width: max-content;
-  height: max-content;
+  align-items: center;
+  justify-content: center;
   border: 0.2em solid black;
   background-color: #005500;
 }
