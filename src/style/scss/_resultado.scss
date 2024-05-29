@@ -7,7 +7,7 @@
 
 #resultados {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     justify-items: center;
     padding: 2em 0em;
     row-gap: 3em;
@@ -27,8 +27,16 @@
     svg {
         width: 600px;
         height: 420px;
-        background-color: aliceblue;
+        color: #000000;
+        background-color: #ffffff;
         transform: scale(1);
     }
+}
+
+@media (min-width: 1220px) {
+    #resultados {
+        grid-template-columns: 1fr 1fr;
+    }
+    
 }
 
